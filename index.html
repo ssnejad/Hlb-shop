@@ -364,8 +364,213 @@
     }
 
     /* ══════════════════════════════
+       ORDER FORM
+    ══════════════════════════════ */
+    .order-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 300;
+      align-items: flex-end;
+      justify-content: center;
+    }
+
+    .order-overlay.show {
+      display: flex;
+      animation: fadeIn 0.2s ease;
+    }
+
+    .order-sheet {
+      background: var(--white);
+      border-radius: 28px 28px 0 0;
+      padding: 24px 20px 40px;
+      width: 100%;
+      max-width: 500px;
+      animation: slideUp 0.3s cubic-bezier(.34,1.56,.64,1);
+    }
+
+    .order-handle {
+      width: 40px; height: 4px;
+      background: #E0E0E0;
+      border-radius: 2px;
+      margin: 0 auto 20px;
+    }
+
+    .order-title {
+      font-size: 16px; font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .order-subtitle {
+      font-size: 12px;
+      color: var(--text-light);
+      margin-bottom: 20px;
+    }
+
+    .order-product-info {
+      background: var(--blue-light);
+      border-radius: var(--radius-sm);
+      padding: 12px 16px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .order-product-icon { font-size: 28px; }
+
+    .order-product-name {
+      font-size: 13px; font-weight: 600;
+      color: var(--text);
+    }
+
+    .order-product-code {
+      font-size: 11px;
+      color: var(--blue);
+    }
+
+    .order-form label {
+      display: block;
+      font-size: 12px; font-weight: 500;
+      color: var(--text-mid);
+      margin-bottom: 6px;
+      margin-top: 14px;
+    }
+
+    .order-form input {
+      width: 100%;
+      border: 1.5px solid #E0E8F0;
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      font-family: 'Vazirmatn', sans-serif;
+      font-size: 14px;
+      color: var(--text);
+      background: var(--cloud);
+      outline: none;
+      transition: border-color 0.2s;
+      text-align: right;
+    }
+
+    .order-form input:focus {
+      border-color: var(--blue);
+      background: var(--white);
+    }
+
+    .order-submit {
+      width: 100%;
+      background: linear-gradient(135deg, var(--blue), var(--teal));
+      color: white;
+      border: none;
+      border-radius: var(--radius-sm);
+      padding: 14px;
+      font-family: 'Vazirmatn', sans-serif;
+      font-size: 15px; font-weight: 700;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+
+    .order-submit:hover { opacity: 0.9; transform: scale(0.99); }
+    .order-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+
+    .order-cancel {
+      width: 100%;
+      background: transparent;
+      color: var(--text-light);
+      border: none;
+      padding: 12px;
+      font-family: 'Vazirmatn', sans-serif;
+      font-size: 13px;
+      cursor: pointer;
+      margin-top: 8px;
+    }
+
+    /* Pack Stepper */
+    .qty-stepper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--cloud);
+      border: 1.5px solid #E0E8F0;
+      border-radius: var(--radius-sm);
+      padding: 8px 12px;
+      margin-top: 6px;
+    }
+
+    .qty-btn {
+      width: 36px; height: 36px;
+      border: none;
+      background: var(--white);
+      border-radius: 50%;
+      font-size: 20px;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.15s;
+      color: var(--blue);
+      font-weight: 700;
+    }
+
+    .qty-btn:hover { background: var(--blue-light); transform: scale(1.05); }
+    .qty-btn:disabled { opacity: 0.3; cursor: not-allowed; transform: none; }
+
+    .qty-display {
+      display: flex; flex-direction: column;
+      align-items: center; gap: 2px;
+    }
+
+    .qty-number {
+      font-size: 22px; font-weight: 700;
+      color: var(--text);
+    }
+
+    .qty-packs {
+      font-size: 10px;
+      color: var(--text-light);
+    }
+    .success-msg {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 0;
+      gap: 12px;
+    }
+
+    .success-msg.show { display: flex; }
+
+    .success-icon {
+      width: 70px; height: 70px;
+      background: var(--teal-light);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 36px;
+    }
+
+    .success-text {
+      font-size: 16px; font-weight: 700;
+      color: var(--teal);
+    }
+
+    .success-sub {
+      font-size: 12px;
+      color: var(--text-light);
+      text-align: center;
+    }
+
+    /* ══════════════════════════════
        ANIMATIONS
     ══════════════════════════════ */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(100%); }
+      to { transform: translateY(0); }
+    }
     @keyframes popIn {
       from { opacity:0; transform: scale(0.6); }
       to   { opacity:1; transform: scale(1); }
@@ -472,7 +677,7 @@
     <div class="c-icon c-wa">💬</div>
     <span class="c-label">واتساپ</span>
   </a>
-  <a href="https://instagram.com/hello.little.baby" class="c-btn" target="_blank">
+  <a href="https://instagram.com/salamkoochoolo" class="c-btn" target="_blank">
     <div class="c-icon c-ig">📸</div>
     <span class="c-label">اینستاگرام</span>
   </a>
@@ -486,55 +691,116 @@
   </a>
 </div>
 
+<!-- ══════════════ ORDER OVERLAY ══════════════ -->
+<div class="order-overlay" id="order-overlay" onclick="closeOrder(event)">
+  <div class="order-sheet">
+    <div class="order-handle"></div>
+
+    <!-- Form -->
+    <div id="order-form-wrap">
+      <div class="order-title">ثبت سفارش</div>
+      <div class="order-subtitle">اطلاعات خود را وارد کنید</div>
+
+      <div class="order-product-info">
+        <div class="order-product-icon" id="order-icon">🧣</div>
+        <div>
+          <div class="order-product-name" id="order-name">پیش‌بند آستین‌دار</div>
+          <div class="order-product-code" id="order-code">sk001</div>
+        </div>
+      </div>
+
+      <div class="order-form">
+        <label>نام و نام خانوادگی *</label>
+        <input type="text" id="f-name" placeholder="مثال: علی احمدی" />
+
+        <label>شماره موبایل *</label>
+        <input type="tel" id="f-phone" placeholder="۰۹۱۲۳۴۵۶۷۸۹" />
+
+        <label>شهر</label>
+        <input type="text" id="f-city" placeholder="مثال: تهران" />
+
+        <label>تعداد (پکی) *</label>
+        <div class="qty-stepper">
+          <button class="qty-btn" id="qty-minus" onclick="changeQty(-1)">−</button>
+          <div class="qty-display">
+            <div class="qty-number" id="qty-val">6</div>
+            <div class="qty-packs" id="qty-packs">۱ پک</div>
+          </div>
+          <button class="qty-btn" onclick="changeQty(1)">+</button>
+        </div>
+
+        <label>توضیحات (اختیاری)</label>
+        <input type="text" id="f-note" placeholder="هر توضیح اضافه‌ای..." />
+      </div>
+
+      <button class="order-submit" id="submit-btn" onclick="submitOrder()">ثبت سفارش 📨</button>
+      <button class="order-cancel" onclick="closeOrderPanel()">انصراف</button>
+    </div>
+
+    <!-- Success -->
+    <div class="success-msg" id="success-msg">
+      <div class="success-icon">✅</div>
+      <div class="success-text">سفارش ثبت شد!</div>
+      <div class="success-sub">به زودی با شما تماس می‌گیریم<br>سپاسگزاریم 🙏</div>
+      <button class="order-submit" onclick="closeOrderPanel()" style="margin-top:16px">بازگشت به کاتالوگ</button>
+    </div>
+  </div>
+</div>
+
 <script>
+const BOT_TOKEN = '8905111858:AAExq9WyxXu0hokrHyuOPTgjPWoOL5cGc6o';
+const ADMIN_IDS = ['104243634', '54180809'];
+
 const data = {
   pishband: {
     title: 'پیش‌بند',
     items: [
-      { code:'sk001', name:'پیش‌بند آستین‌دار', price:'۲۷۵,۰۰۰', min:'حداقل ۶ عدد', icon:'🧣' },
-      { code:'sk002', name:'پیش‌بند ژیله‌ای',  price:'۲۹۵,۰۰۰', min:'حداقل ۹ عدد', icon:'🧣' },
-      { code:'sk003', name:'پیش‌بند دو عددی',  price:'۲۷۳,۰۰۰', min:'حداقل ۱۰ عدد', icon:'🧣' },
-      { code:'sk004', name:'پیش‌بند سه عددی', price:'۲۱۳,۰۰۰', min:'حداقل ۱۲ عدد', icon:'🧣' },
+      { code:'sk001', name:'پیش‌بند آستین‌دار',        price:'۲۷۵,۰۰۰', minQty:6,  min:'حداقل ۶ عدد',  icon:'🧣' },
+      { code:'sk002', name:'پیش‌بند ژیله‌ای',           price:'۲۹۵,۰۰۰', minQty:9,  min:'حداقل ۹ عدد',  icon:'🧣' },
+      { code:'sk003', name:'پیش‌بند دو عددی',           price:'۲۷۳,۰۰۰', minQty:10, min:'حداقل ۱۰ عدد', icon:'🧣' },
+      { code:'sk004', name:'پیش‌بند سه عددی',           price:'۲۱۳,۰۰۰', minQty:12, min:'حداقل ۱۲ عدد', icon:'🧣' },
     ]
   },
   dastmal: {
     title: 'دستمال گردن',
     items: [
-      { code:'sk101', name:'دستمال گردن دو عددی', price:'۲۴۵,۰۰۰', min:'حداقل ۱۰ عدد', icon:'🤍' },
+      { code:'sk101', name:'دستمال گردن دو عددی',       price:'۲۴۵,۰۰۰', minQty:10, min:'حداقل ۱۰ عدد', icon:'🤍' },
     ]
   },
   pato: {
     title: 'پتو کلاهدار',
     items: [
-      { code:'sk201', name:'پتو کلاهدار چهارفصل ۷۵×۷۵', price:'۵۲۵,۰۰۰', min:'حداقل ۶ عدد', icon:'🛏️' },
+      { code:'sk201', name:'پتو کلاهدار چهارفصل ۷۵×۷۵', price:'۵۲۵,۰۰۰', minQty:6,  min:'حداقل ۶ عدد',  icon:'🛏️' },
     ]
   },
   ziranaz: {
     title: 'زیرانداز',
     items: [
-      { code:'sk301', name:'زیرانداز پشت مشمعی ۷۵×۶۰', price:'۳۸۱,۰۰۰', min:'حداقل ۱۲ عدد', icon:'🟦' },
+      { code:'sk301', name:'زیرانداز پشت مشمعی ۷۵×۶۰', price:'۳۸۱,۰۰۰', minQty:12, min:'حداقل ۱۲ عدد', icon:'🟦' },
     ]
   },
   balesh: {
     title: 'بالش شیردهی',
     items: [
-      { code:'sk401', name:'بالش شیردهی', price:'۱۸۳,۰۰۰', min:'حداقل ۶ عدد', icon:'🌙' },
+      { code:'sk401', name:'بالش شیردهی',               price:'۱۸۳,۰۰۰', minQty:6,  min:'حداقل ۶ عدد',  icon:'🌙' },
     ]
   },
   arogh: {
     title: 'آروغ‌گیر',
     items: [
-      { code:'sk501', name:'آروغ‌گیر سه عددی سایز بزرگ', price:'۳۲۵,۰۰۰', min:'حداقل ۱۲ عدد', icon:'⭐' },
+      { code:'sk501', name:'آروغ‌گیر سه عددی سایز بزرگ', price:'۳۲۵,۰۰۰', minQty:12, min:'حداقل ۱۲ عدد', icon:'⭐' },
     ]
   }
 };
+
+let currentProduct = null;
 
 function openCat(key) {
   const cat = data[key];
   document.getElementById('cat-title').textContent = cat.title;
   document.getElementById('cat-sub').textContent = cat.items.length + ' محصول';
   document.getElementById('prod-grid').innerHTML = cat.items.map((p,i) => `
-    <div class="prod-card" style="animation-delay:${i*0.07}s">
+    <div class="prod-card" style="animation-delay:${i*0.07}s" onclick="openOrder('${p.code}','${p.name}','${p.price}','${p.icon}','${p.min}','${p.minQty}')">
       <div class="prod-img">${p.icon}</div>
       <div class="prod-body">
         <div class="prod-code">${p.code}</div>
@@ -553,6 +819,98 @@ function goHome() {
   document.getElementById('products').classList.remove('active');
   document.getElementById('home').classList.add('active');
   window.scrollTo(0,0);
+}
+
+function openOrder(code, name, price, icon, min, minQty) {
+  currentProduct = { code, name, price, icon, min, minQty: parseInt(minQty) };
+  document.getElementById('order-icon').textContent = icon;
+  document.getElementById('order-name').textContent = name;
+  document.getElementById('order-code').textContent = code + ' · ' + price + ' تومان';
+
+  // Reset stepper to 1 pack
+  currentProduct.qty = parseInt(minQty);
+  updateStepper();
+
+  document.getElementById('f-name').value = '';
+  document.getElementById('f-phone').value = '';
+  document.getElementById('f-city').value = '';
+  document.getElementById('f-note').value = '';
+  document.getElementById('order-form-wrap').style.display = 'block';
+  document.getElementById('success-msg').classList.remove('show');
+  document.getElementById('order-overlay').classList.add('show');
+}
+
+function updateStepper() {
+  const qty = currentProduct.qty;
+  const minQty = currentProduct.minQty;
+  const packs = qty / minQty;
+  document.getElementById('qty-val').textContent = qty;
+  document.getElementById('qty-packs').textContent = packs + ' پک';
+  document.getElementById('qty-minus').disabled = qty <= minQty;
+}
+
+function changeQty(dir) {
+  currentProduct.qty += dir * currentProduct.minQty;
+  if (currentProduct.qty < currentProduct.minQty) currentProduct.qty = currentProduct.minQty;
+  updateStepper();
+}
+function closeOrder(e) {
+  if (e.target === document.getElementById('order-overlay')) closeOrderPanel();
+}
+
+function closeOrderPanel() {
+  document.getElementById('order-overlay').classList.remove('show');
+}
+
+async function submitOrder() {
+  const name  = document.getElementById('f-name').value.trim();
+  const phone = document.getElementById('f-phone').value.trim();
+  const qty   = currentProduct.qty;
+  const city  = document.getElementById('f-city').value.trim();
+  const note  = document.getElementById('f-note').value.trim();
+  const packs = qty / currentProduct.minQty;
+
+  if (!name || !phone) {
+    alert('لطفاً نام و شماره موبایل را وارد کنید');
+    return;
+  }
+
+  const btn = document.getElementById('submit-btn');
+  btn.disabled = true;
+  btn.textContent = 'در حال ارسال...';
+
+  const msg = `
+🛒 سفارش جدید سلام کوچولو
+
+📦 محصول: ${currentProduct.name}
+🔖 کد: ${currentProduct.code}
+💰 قیمت واحد: ${currentProduct.price} تومان
+📊 تعداد: ${qty} عدد (${packs} پک)
+
+👤 نام: ${name}
+📱 موبایل: ${phone}
+🏙️ شهر: ${city || 'ذکر نشده'}
+📝 توضیحات: ${note || 'ندارد'}
+
+⏰ زمان: ${new Date().toLocaleString('fa-IR')}
+  `.trim();
+
+  try {
+    await Promise.all(ADMIN_IDS.map(id =>
+      fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ chat_id: id, text: msg })
+      })
+    ));
+    document.getElementById('order-form-wrap').style.display = 'none';
+    document.getElementById('success-msg').classList.add('show');
+  } catch(e) {
+    alert('خطا در ارسال. لطفاً با شماره تماس بگیرید.');
+  }
+
+  btn.disabled = false;
+  btn.textContent = 'ثبت سفارش 📨';
 }
 </script>
 </body>
