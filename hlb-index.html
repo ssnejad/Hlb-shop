@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#2E86C1" />
+  <meta name="description" content="کاتالوگ آنلاین سلام کوچولو" />
+  <title>سلام کوچولو</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --blue:       #2E86C1;
+      --blue-mid:   #6BA3D6;
+      --blue-light: #C8E8F5;
+      --teal:       #00B5AD;
+      --teal-light: #E0F7F6;
+      --gold:       #F5A623;
+      --gold-light: #FEF3DC;
+      --cloud:      #F2EFE9;
+      --white:      #FFFFFF;
+      --text:       #1A2B3C;
+      --text-mid:   #4A6070;
+      --text-light: #8FA3B0;
+      --shadow-sm:  0 2px 12px rgba(46,134,193,0.10);
+      --shadow-md:  0 6px 24px rgba(46,134,193,0.18);
+      --shadow-lg:  0 12px 40px rgba(46,134,193,0.22);
+      --radius-sm:  12px;
+      --radius-md:  20px;
+      --radius-lg:  28px;
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+
+    body {
+      font-family: 'Vazirmatn', sans-serif;
+      background: var(--cloud);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── PAGES ── */
+    .page { display: none; min-height: 100vh; flex-direction: column; }
+    .page.active { display: flex; }
+
+    /* ══════════════════════════════
+       HOME
+    ══════════════════════════════ */
+    #home {
+      padding: 0 0 90px;
+      align-items: center;
+    }
+
+    /* Header */
+    .home-header {
+      width: 100%;
+      background: linear-gradient(160deg, var(--blue) 0%, var(--teal) 100%);
+      padding: 48px 24px 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .home-header::before {
+      content: '';
+      position: absolute;
+      width: 300px; height: 300px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 50%;
+      top: -80px; left: -80px;
+    }
+
+    .home-header::after {
+      content: '';
+      position: absolute;
+      width: 200px; height: 200px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 50%;
+      bottom: -60px; right: -40px;
+    }
+
+    .logo-ring {
+      width: 110px; height: 110px;
+      background: rgba(255,255,255,0.15);
+      border: 3px solid rgba(255,255,255,0.3);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 52px;
+      margin-bottom: 18px;
+      backdrop-filter: blur(8px);
+      animation: popIn 0.5s cubic-bezier(.34,1.56,.64,1) both;
+      position: relative; z-index: 1;
+    }
+
+    .home-title {
+      font-size: 26px; font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.5px;
+      animation: fadeDown 0.5s ease 0.1s both;
+      position: relative; z-index: 1;
+    }
+
+    .home-title span { color: var(--gold); }
+
+    .home-subtitle {
+      font-size: 12px; font-weight: 300;
+      color: rgba(255,255,255,0.75);
+      margin-top: 6px;
+      animation: fadeDown 0.5s ease 0.2s both;
+      position: relative; z-index: 1;
+    }
+
+    /* Wave */
+    .wave {
+      width: 100%;
+      margin-top: -2px;
+    }
+
+    /* Categories */
+    .section-label {
+      font-size: 12px; font-weight: 500;
+      color: var(--text-light);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin: 28px 0 16px;
+      padding: 0 20px;
+      align-self: flex-start;
+    }
+
+    .cats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      padding: 0 16px;
+      width: 100%;
+      max-width: 440px;
+      animation: fadeUp 0.5s ease 0.2s both;
+    }
+
+    .cat-card {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      padding: 20px 10px 16px;
+      display: flex; flex-direction: column;
+      align-items: center; gap: 10px;
+      cursor: pointer;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.22s ease;
+      border: 2px solid transparent;
+      position: relative; overflow: hidden;
+    }
+
+    .cat-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--blue-light), transparent);
+      opacity: 0;
+      transition: opacity 0.22s;
+    }
+
+    .cat-card:hover::before, .cat-card:active::before { opacity: 1; }
+
+    .cat-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--blue-mid);
+      box-shadow: var(--shadow-md);
+    }
+
+    .cat-icon {
+      width: 58px; height: 58px;
+      background: var(--blue-light);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 26px;
+      transition: transform 0.22s;
+      position: relative; z-index: 1;
+    }
+
+    .cat-card:hover .cat-icon { transform: scale(1.1); }
+
+    .cat-name {
+      font-size: 11px; font-weight: 600;
+      color: var(--text);
+      text-align: center;
+      line-height: 1.5;
+      position: relative; z-index: 1;
+    }
+
+    .cat-count {
+      font-size: 10px;
+      color: var(--text-light);
+      position: relative; z-index: 1;
+    }
+
+    /* Badges */
+    .badge {
+      position: absolute;
+      top: 10px; left: 10px;
+      background: var(--gold);
+      color: white;
+      font-size: 9px; font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 20px;
+    }
+
+    /* ══════════════════════════════
+       PRODUCTS PAGE
+    ══════════════════════════════ */
+    #products { padding-bottom: 90px; }
+
+    .prod-header {
+      background: linear-gradient(135deg, var(--blue), var(--teal));
+      padding: 16px 16px 28px;
+      display: flex; align-items: center; gap: 14px;
+      position: sticky; top: 0; z-index: 50;
+    }
+
+    .back-btn {
+      width: 38px; height: 38px;
+      background: rgba(255,255,255,0.18);
+      border: none; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; color: white; font-size: 18px;
+      transition: background 0.2s;
+      flex-shrink: 0;
+    }
+
+    .back-btn:hover { background: rgba(255,255,255,0.3); }
+
+    .prod-header-info { flex: 1; }
+
+    .prod-header-title {
+      font-size: 18px; font-weight: 700;
+      color: white;
+    }
+
+    .prod-header-sub {
+      font-size: 11px;
+      color: rgba(255,255,255,0.75);
+      margin-top: 2px;
+    }
+
+    .prod-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      padding: 18px 14px;
+    }
+
+    .prod-card {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      cursor: pointer;
+      transition: all 0.22s ease;
+      animation: fadeUp 0.4s ease both;
+    }
+
+    .prod-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .prod-img {
+      width: 100%; aspect-ratio: 1;
+      background: linear-gradient(135deg, var(--blue-light), var(--teal-light));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 52px;
+      position: relative;
+    }
+
+    .prod-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+
+    .prod-body { padding: 12px 12px 14px; }
+
+    .prod-code {
+      display: inline-block;
+      font-size: 10px; font-weight: 600;
+      color: var(--blue);
+      background: var(--blue-light);
+      padding: 3px 9px;
+      border-radius: 20px;
+      margin-bottom: 6px;
+    }
+
+    .prod-name {
+      font-size: 13px; font-weight: 600;
+      color: var(--text);
+      line-height: 1.4;
+      margin-bottom: 8px;
+    }
+
+    .prod-price {
+      font-size: 15px; font-weight: 700;
+      color: var(--teal);
+    }
+
+    .prod-price span {
+      font-size: 11px; font-weight: 400;
+      color: var(--text-light);
+    }
+
+    .prod-min {
+      font-size: 10px;
+      color: var(--text-light);
+      margin-top: 3px;
+      display: flex; align-items: center; gap: 4px;
+    }
+
+    .prod-min::before {
+      content: '📦';
+      font-size: 10px;
+    }
+
+    /* ══════════════════════════════
+       CONTACT BAR
+    ══════════════════════════════ */
+    .contact-bar {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      background: var(--white);
+      padding: 10px 8px calc(10px + env(safe-area-inset-bottom));
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      box-shadow: 0 -4px 24px rgba(0,0,0,0.08);
+      z-index: 200;
+    }
+
+    .c-btn {
+      display: flex; flex-direction: column;
+      align-items: center; gap: 4px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.18s;
+      flex: 1;
+    }
+
+    .c-btn:hover { transform: scale(1.08); }
+
+    .c-icon {
+      width: 46px; height: 46px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+    }
+
+    .c-wa  { background: #E8F5E9; }
+    .c-ig  { background: #FCE4EC; }
+    .c-tel { background: var(--blue-light); }
+    .c-loc { background: var(--gold-light); }
+
+    .c-label {
+      font-size: 9px; font-weight: 500;
+      color: var(--text-light);
+    }
+
+    /* ══════════════════════════════
+       ANIMATIONS
+    ══════════════════════════════ */
+    @keyframes popIn {
+      from { opacity:0; transform: scale(0.6); }
+      to   { opacity:1; transform: scale(1); }
+    }
+    @keyframes fadeDown {
+      from { opacity:0; transform: translateY(-14px); }
+      to   { opacity:1; transform: translateY(0); }
+    }
+    @keyframes fadeUp {
+      from { opacity:0; transform: translateY(18px); }
+      to   { opacity:1; transform: translateY(0); }
+    }
+
+    /* ══════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════ */
+    @media (min-width: 480px) {
+      .cats-grid { max-width: 460px; }
+    }
+    @media (min-width: 600px) {
+      .prod-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (min-width: 900px) {
+      .prod-grid { grid-template-columns: repeat(4, 1fr); }
+      #home { padding-top: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════ HOME ══════════════ -->
+<div id="home" class="page active">
+
+  <div class="home-header">
+    <div class="logo-ring">👶</div>
+    <h1 class="home-title">سلام <span>کوچولو</span></h1>
+    <p class="home-subtitle">تولید و پخش محصولات نوزادی · HLB Shop</p>
+  </div>
+
+  <!-- Wave divider -->
+  <svg class="wave" viewBox="0 0 1440 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,20 C360,40 1080,0 1440,20 L1440,0 L0,0 Z" fill="url(#wg)"/>
+    <defs>
+      <linearGradient id="wg" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="#2E86C1"/>
+        <stop offset="100%" stop-color="#00B5AD"/>
+      </linearGradient>
+    </defs>
+  </svg>
+
+  <p class="section-label">دسته‌بندی محصولات</p>
+
+  <div class="cats-grid">
+    <div class="cat-card" onclick="openCat('pishband')">
+      <div class="cat-icon">🧣</div>
+      <div class="cat-name">پیش‌بند</div>
+      <div class="cat-count">۴ مدل</div>
+      <div class="badge">پرفروش</div>
+    </div>
+    <div class="cat-card" onclick="openCat('dastmal')">
+      <div class="cat-icon">🤍</div>
+      <div class="cat-name">دستمال گردن</div>
+      <div class="cat-count">۱ مدل</div>
+    </div>
+    <div class="cat-card" onclick="openCat('pato')">
+      <div class="cat-icon">🛏️</div>
+      <div class="cat-name">پتو کلاهدار</div>
+      <div class="cat-count">۱ مدل</div>
+    </div>
+    <div class="cat-card" onclick="openCat('ziranaz')">
+      <div class="cat-icon">🟦</div>
+      <div class="cat-name">زیرانداز</div>
+      <div class="cat-count">۱ مدل</div>
+    </div>
+    <div class="cat-card" onclick="openCat('balesh')">
+      <div class="cat-icon">🌙</div>
+      <div class="cat-name">بالش شیردهی</div>
+      <div class="cat-count">۱ مدل</div>
+    </div>
+    <div class="cat-card" onclick="openCat('arogh')">
+      <div class="cat-icon">⭐</div>
+      <div class="cat-name">آروغ‌گیر</div>
+      <div class="cat-count">۱ مدل</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ══════════════ PRODUCTS ══════════════ -->
+<div id="products" class="page">
+  <div class="prod-header">
+    <button class="back-btn" onclick="goHome()">›</button>
+    <div class="prod-header-info">
+      <div class="prod-header-title" id="cat-title">پیش‌بند</div>
+      <div class="prod-header-sub" id="cat-sub">۴ محصول</div>
+    </div>
+  </div>
+  <div class="prod-grid" id="prod-grid"></div>
+</div>
+
+<!-- ══════════════ CONTACT BAR ══════════════ -->
+<div class="contact-bar">
+  <a href="https://wa.me/989125674059" class="c-btn" target="_blank">
+    <div class="c-icon c-wa">💬</div>
+    <span class="c-label">واتساپ</span>
+  </a>
+  <a href="https://instagram.com/salamkoochoolo" class="c-btn" target="_blank">
+    <div class="c-icon c-ig">📸</div>
+    <span class="c-label">اینستاگرام</span>
+  </a>
+  <a href="tel:09125674059" class="c-btn">
+    <div class="c-icon c-tel">📞</div>
+    <span class="c-label">۰۹۱۲۵۶۷۴۰۵۹</span>
+  </a>
+  <a href="tel:09128609131" class="c-btn">
+    <div class="c-icon c-loc">📱</div>
+    <span class="c-label">۰۹۱۲۸۶۰۹۱۳۱</span>
+  </a>
+</div>
+
+<script>
+const data = {
+  pishband: {
+    title: 'پیش‌بند',
+    items: [
+      { code:'sk001', name:'پیش‌بند آستین‌دار', price:'۲۷۵,۰۰۰', min:'حداقل ۶ عدد', icon:'🧣' },
+      { code:'sk002', name:'پیش‌بند ژیله‌ای',  price:'۲۹۵,۰۰۰', min:'حداقل ۹ عدد', icon:'🧣' },
+      { code:'sk003', name:'پیش‌بند دو عددی',  price:'۲۷۳,۰۰۰', min:'حداقل ۱۰ عدد', icon:'🧣' },
+      { code:'sk004', name:'پیش‌بند سه عددی', price:'۲۱۳,۰۰۰', min:'حداقل ۱۲ عدد', icon:'🧣' },
+    ]
+  },
+  dastmal: {
+    title: 'دستمال گردن',
+    items: [
+      { code:'sk101', name:'دستمال گردن دو عددی', price:'۲۴۵,۰۰۰', min:'حداقل ۱۰ عدد', icon:'🤍' },
+    ]
+  },
+  pato: {
+    title: 'پتو کلاهدار',
+    items: [
+      { code:'sk201', name:'پتو کلاهدار چهارفصل ۷۵×۷۵', price:'۵۲۵,۰۰۰', min:'حداقل ۶ عدد', icon:'🛏️' },
+    ]
+  },
+  ziranaz: {
+    title: 'زیرانداز',
+    items: [
+      { code:'sk301', name:'زیرانداز پشت مشمعی ۷۵×۶۰', price:'۳۸۱,۰۰۰', min:'حداقل ۱۲ عدد', icon:'🟦' },
+    ]
+  },
+  balesh: {
+    title: 'بالش شیردهی',
+    items: [
+      { code:'sk401', name:'بالش شیردهی', price:'۱۸۳,۰۰۰', min:'حداقل ۶ عدد', icon:'🌙' },
+    ]
+  },
+  arogh: {
+    title: 'آروغ‌گیر',
+    items: [
+      { code:'sk501', name:'آروغ‌گیر سه عددی سایز بزرگ', price:'۳۲۵,۰۰۰', min:'حداقل ۱۲ عدد', icon:'⭐' },
+    ]
+  }
+};
+
+function openCat(key) {
+  const cat = data[key];
+  document.getElementById('cat-title').textContent = cat.title;
+  document.getElementById('cat-sub').textContent = cat.items.length + ' محصول';
+  document.getElementById('prod-grid').innerHTML = cat.items.map((p,i) => `
+    <div class="prod-card" style="animation-delay:${i*0.07}s">
+      <div class="prod-img">${p.icon}</div>
+      <div class="prod-body">
+        <div class="prod-code">${p.code}</div>
+        <div class="prod-name">${p.name}</div>
+        <div class="prod-price">${p.price} <span>تومان</span></div>
+        <div class="prod-min">${p.min}</div>
+      </div>
+    </div>
+  `).join('');
+  document.getElementById('home').classList.remove('active');
+  document.getElementById('products').classList.add('active');
+  window.scrollTo(0,0);
+}
+
+function goHome() {
+  document.getElementById('products').classList.remove('active');
+  document.getElementById('home').classList.add('active');
+  window.scrollTo(0,0);
+}
+</script>
+</body>
+</html>
