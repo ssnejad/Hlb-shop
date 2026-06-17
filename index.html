@@ -624,36 +624,51 @@
   <p class="section-label">دسته‌بندی محصولات</p>
 
   <div class="cats-grid">
-    <div class="cat-card" onclick="openCat('pishband')">
+    <div class="cat-card" onclick="openCat('pishband_astan')">
       <div class="cat-icon">🧣</div>
-      <div class="cat-name">پیش‌بند</div>
-      <div class="cat-count">۴ مدل</div>
+      <div class="cat-name">پیش‌بند آستین‌دار</div>
+      <div class="cat-count">۶ طرح</div>
+    </div>
+    <div class="cat-card" onclick="openCat('pishband_zhile')">
+      <div class="cat-icon">🧣</div>
+      <div class="cat-name">پیش‌بند ژیله‌ای</div>
+      <div class="cat-count">۶ طرح</div>
+    </div>
+    <div class="cat-card" onclick="openCat('pishband_do')">
+      <div class="cat-icon">🧣</div>
+      <div class="cat-name">پیش‌بند دو عددی</div>
+      <div class="cat-count">۱۰ طرح</div>
+    </div>
+    <div class="cat-card" onclick="openCat('pishband_se')">
+      <div class="cat-icon">🧣</div>
+      <div class="cat-name">پیش‌بند سه عددی</div>
+      <div class="cat-count">۶ طرح</div>
       <div class="badge">پرفروش</div>
     </div>
     <div class="cat-card" onclick="openCat('dastmal')">
       <div class="cat-icon">🤍</div>
       <div class="cat-name">دستمال گردن</div>
-      <div class="cat-count">۱ مدل</div>
+      <div class="cat-count">۱۰ طرح</div>
     </div>
     <div class="cat-card" onclick="openCat('pato')">
       <div class="cat-icon">🛏️</div>
       <div class="cat-name">پتو کلاهدار</div>
-      <div class="cat-count">۱ مدل</div>
+      <div class="cat-count">۶ طرح</div>
     </div>
     <div class="cat-card" onclick="openCat('ziranaz')">
       <div class="cat-icon">🟦</div>
       <div class="cat-name">زیرانداز</div>
-      <div class="cat-count">۱ مدل</div>
+      <div class="cat-count">۱۲ طرح</div>
     </div>
     <div class="cat-card" onclick="openCat('balesh')">
       <div class="cat-icon">🌙</div>
       <div class="cat-name">بالش شیردهی</div>
-      <div class="cat-count">۱ مدل</div>
+      <div class="cat-count">۶ طرح</div>
     </div>
     <div class="cat-card" onclick="openCat('arogh')">
       <div class="cat-icon">⭐</div>
       <div class="cat-name">آروغ‌گیر</div>
-      <div class="cat-count">۱ مدل</div>
+      <div class="cat-count">۶ طرح</div>
     </div>
   </div>
 
@@ -748,47 +763,121 @@
 </div>
 
 <script>
-const BOT_TOKEN = '8905111858:AAHdNL71rl20aPxmqyuNOZ_5ihtOS_EeugY';
+const BOT_TOKEN = '8905111858:AAEumn2w5Hvv37XHhbJyWbovF7AV_4iuFRw';
 const ADMIN_IDS = ['104243634', '54180809'];
 
 const data = {
-  pishband: {
-    title: 'پیش‌بند',
+  pishband_astan: {
+    title: 'پیش‌بند آستین‌دار',
     items: [
-      { code:'sk001', name:'پیش‌بند آستین‌دار',        price:'۲۷۵,۰۰۰', minQty:6,  min:'حداقل ۶ عدد',  icon:'🧣' },
-      { code:'sk002', name:'پیش‌بند ژیله‌ای',           price:'۲۹۵,۰۰۰', minQty:9,  min:'حداقل ۹ عدد',  icon:'🧣' },
-      { code:'sk003', name:'پیش‌بند دو عددی',           price:'۲۷۳,۰۰۰', minQty:10, min:'حداقل ۱۰ عدد', icon:'🧣' },
-      { code:'sk004', name:'پیش‌بند سه عددی',           price:'۲۱۳,۰۰۰', minQty:12, min:'حداقل ۱۲ عدد', icon:'🧣' },
+      { code:'sk001', name:'پیش‌بند آستین‌دار', price:'۲۷۵,۰۰۰', minQty:6, min:'حداقل ۶ عدد', img:'images/sk001.jpeg' },
+      { code:'sk002', name:'پیش‌بند آستین‌دار', price:'۲۷۵,۰۰۰', minQty:6, min:'حداقل ۶ عدد', img:'images/sk002.jpeg' },
+      { code:'sk003', name:'پیش‌بند آستین‌دار', price:'۲۷۵,۰۰۰', minQty:6, min:'حداقل ۶ عدد', img:'images/sk003.jpeg' },
+      { code:'sk004', name:'پیش‌بند آستین‌دار', price:'۲۷۵,۰۰۰', minQty:6, min:'حداقل ۶ عدد', img:'images/sk004.jpeg' },
+      { code:'sk005', name:'پیش‌بند آستین‌دار', price:'۲۷۵,۰۰۰', minQty:6, min:'حداقل ۶ عدد', img:'images/sk005.jpeg' },
+      { code:'sk006', name:'پیش‌بند آستین‌دار', price:'۲۷۵,۰۰۰', minQty:6, min:'حداقل ۶ عدد', img:'images/sk006.jpeg' },
+    ]
+  },
+  pishband_zhile: {
+    title: 'پیش‌بند ژیله‌ای',
+    items: [
+      { code:'sk011', name:'پیش‌بند ژیله‌ای', price:'۲۹۵,۰۰۰', minQty:9, min:'حداقل ۹ عدد', img:'images/sk011.jpeg' },
+      { code:'sk012', name:'پیش‌بند ژیله‌ای', price:'۲۹۵,۰۰۰', minQty:9, min:'حداقل ۹ عدد', img:'images/sk012.jpeg' },
+      { code:'sk013', name:'پیش‌بند ژیله‌ای', price:'۲۹۵,۰۰۰', minQty:9, min:'حداقل ۹ عدد', img:'images/sk013.jpeg' },
+      { code:'sk014', name:'پیش‌بند ژیله‌ای', price:'۲۹۵,۰۰۰', minQty:9, min:'حداقل ۹ عدد', img:'images/sk014.jpeg' },
+      { code:'sk015', name:'پیش‌بند ژیله‌ای', price:'۲۹۵,۰۰۰', minQty:9, min:'حداقل ۹ عدد', img:'images/sk015.jpeg' },
+      { code:'sk016', name:'پیش‌بند ژیله‌ای', price:'۲۹۵,۰۰۰', minQty:9, min:'حداقل ۹ عدد', img:'images/sk016.jpeg' },
+    ]
+  },
+  pishband_do: {
+    title: 'پیش‌بند دو عددی',
+    items: [
+      { code:'sk021', name:'پیش‌بند دو عددی', price:'۲۷۳,۰۰۰', minQty:10, min:'حداقل ۱۰ عدد', img:'images/sk021.jpeg' },
+      { code:'sk022', name:'پیش‌بند دو عددی', price:'۲۷۳,۰۰۰', minQty:10, min:'حداقل ۱۰ عدد', img:'images/sk022.jpeg' },
+      { code:'sk023', name:'پیش‌بند دو عددی', price:'۲۷۳,۰۰۰', minQty:10, min:'حداقل ۱۰ عدد', img:'images/sk023.jpeg' },
+      { code:'sk024', name:'پیش‌بند دو عددی', price:'۲۷۳,۰۰۰', minQty:10, min:'حداقل ۱۰ عدد', img:'images/sk024.jpeg' },
+      { code:'sk025', name:'پیش‌بند دو عددی', price:'۲۷۳,۰۰۰', minQty:10, min:'حداقل ۱۰ عدد', img:'images/sk025.jpeg' },
+      { code:'sk026', name:'پیش‌بند دو عددی', price:'۲۷۳,۰۰۰', minQty:10, min:'حداقل ۱۰ عدد', img:'images/sk026.jpeg' },
+      { code:'sk027', name:'پیش‌بند دو عددی', price:'۲۷۳,۰۰۰', minQty:10, min:'حداقل ۱۰ عدد', img:'images/sk027.jpeg' },
+      { code:'sk028', name:'پیش‌بند دو عددی', price:'۲۷۳,۰۰۰', minQty:10, min:'حداقل ۱۰ عدد', img:'images/sk028.jpeg' },
+      { code:'sk029', name:'پیش‌بند دو عددی', price:'۲۷۳,۰۰۰', minQty:10, min:'حداقل ۱۰ عدد', img:'images/sk029.jpeg' },
+      { code:'sk030', name:'پیش‌بند دو عددی', price:'۲۷۳,۰۰۰', minQty:10, min:'حداقل ۱۰ عدد', img:'images/sk030.jpeg' },
+    ]
+  },
+  pishband_se: {
+    title: 'پیش‌بند سه عددی',
+    items: [
+      { code:'sk031', name:'پیش‌بند سه عددی', price:'۲۱۳,۰۰۰', minQty:12, min:'حداقل ۱۲ عدد', img:'images/sk031.jpeg' },
+      { code:'sk032', name:'پیش‌بند سه عددی', price:'۲۱۳,۰۰۰', minQty:12, min:'حداقل ۱۲ عدد', img:'images/sk032.jpeg' },
+      { code:'sk033', name:'پیش‌بند سه عددی', price:'۲۱۳,۰۰۰', minQty:12, min:'حداقل ۱۲ عدد', img:'images/sk033.jpeg' },
+      { code:'sk034', name:'پیش‌بند سه عددی', price:'۲۱۳,۰۰۰', minQty:12, min:'حداقل ۱۲ عدد', img:'images/sk034.jpeg' },
+      { code:'sk035', name:'پیش‌بند سه عددی', price:'۲۱۳,۰۰۰', minQty:12, min:'حداقل ۱۲ عدد', img:'images/sk035.jpeg' },
+      { code:'sk036', name:'پیش‌بند سه عددی', price:'۲۱۳,۰۰۰', minQty:12, min:'حداقل ۱۲ عدد', img:'images/sk036.jpeg' },
     ]
   },
   dastmal: {
     title: 'دستمال گردن',
     items: [
-      { code:'sk101', name:'دستمال گردن دو عددی',       price:'۲۴۵,۰۰۰', minQty:10, min:'حداقل ۱۰ عدد', icon:'🤍' },
+      { code:'sk101', name:'دستمال گردن دو عددی', price:'۲۴۵,۰۰۰', minQty:10, min:'حداقل ۱۰ عدد', img:'images/sk101.jpeg' },
+      { code:'sk102', name:'دستمال گردن دو عددی', price:'۲۴۵,۰۰۰', minQty:10, min:'حداقل ۱۰ عدد', img:'images/sk102.jpeg' },
+      { code:'sk103', name:'دستمال گردن دو عددی', price:'۲۴۵,۰۰۰', minQty:10, min:'حداقل ۱۰ عدد', img:'images/sk103.jpeg' },
+      { code:'sk104', name:'دستمال گردن دو عددی', price:'۲۴۵,۰۰۰', minQty:10, min:'حداقل ۱۰ عدد', img:'images/sk104.jpeg' },
+      { code:'sk105', name:'دستمال گردن دو عددی', price:'۲۴۵,۰۰۰', minQty:10, min:'حداقل ۱۰ عدد', img:'images/sk105.jpeg' },
+      { code:'sk106', name:'دستمال گردن دو عددی', price:'۲۴۵,۰۰۰', minQty:10, min:'حداقل ۱۰ عدد', img:'images/sk106.jpeg' },
+      { code:'sk107', name:'دستمال گردن دو عددی', price:'۲۴۵,۰۰۰', minQty:10, min:'حداقل ۱۰ عدد', img:'images/sk107.jpeg' },
+      { code:'sk108', name:'دستمال گردن دو عددی', price:'۲۴۵,۰۰۰', minQty:10, min:'حداقل ۱۰ عدد', img:'images/sk108.jpeg' },
+      { code:'sk109', name:'دستمال گردن دو عددی', price:'۲۴۵,۰۰۰', minQty:10, min:'حداقل ۱۰ عدد', img:'images/sk109.jpeg' },
+      { code:'sk110', name:'دستمال گردن دو عددی', price:'۲۴۵,۰۰۰', minQty:10, min:'حداقل ۱۰ عدد', img:'images/sk110.jpeg' },
     ]
   },
   pato: {
     title: 'پتو کلاهدار',
     items: [
-      { code:'sk201', name:'پتو کلاهدار چهارفصل ۷۵×۷۵', price:'۵۲۵,۰۰۰', minQty:6,  min:'حداقل ۶ عدد',  icon:'🛏️' },
+      { code:'sk201', name:'پتو کلاهدار چهارفصل ۷۵×۷۵', price:'۵۲۵,۰۰۰', minQty:6, min:'حداقل ۶ عدد', img:'images/sk201.jpeg' },
+      { code:'sk202', name:'پتو کلاهدار چهارفصل ۷۵×۷۵', price:'۵۲۵,۰۰۰', minQty:6, min:'حداقل ۶ عدد', img:'images/sk202.jpeg' },
+      { code:'sk203', name:'پتو کلاهدار چهارفصل ۷۵×۷۵', price:'۵۲۵,۰۰۰', minQty:6, min:'حداقل ۶ عدد', img:'images/sk203.jpeg' },
+      { code:'sk204', name:'پتو کلاهدار چهارفصل ۷۵×۷۵', price:'۵۲۵,۰۰۰', minQty:6, min:'حداقل ۶ عدد', img:'images/sk204.jpeg' },
+      { code:'sk205', name:'پتو کلاهدار چهارفصل ۷۵×۷۵', price:'۵۲۵,۰۰۰', minQty:6, min:'حداقل ۶ عدد', img:'images/sk205.jpeg' },
+      { code:'sk206', name:'پتو کلاهدار چهارفصل ۷۵×۷۵', price:'۵۲۵,۰۰۰', minQty:6, min:'حداقل ۶ عدد', img:'images/sk206.jpeg' },
     ]
   },
   ziranaz: {
     title: 'زیرانداز',
     items: [
-      { code:'sk301', name:'زیرانداز پشت مشمعی ۷۵×۶۰', price:'۳۸۱,۰۰۰', minQty:12, min:'حداقل ۱۲ عدد', icon:'🟦' },
+      { code:'sk301', name:'زیرانداز پشت مشمعی ۷۵×۶۰', price:'۳۸۱,۰۰۰', minQty:12, min:'حداقل ۱۲ عدد', img:'images/sk301.jpeg' },
+      { code:'sk302', name:'زیرانداز پشت مشمعی ۷۵×۶۰', price:'۳۸۱,۰۰۰', minQty:12, min:'حداقل ۱۲ عدد', img:'images/sk302.jpeg' },
+      { code:'sk303', name:'زیرانداز پشت مشمعی ۷۵×۶۰', price:'۳۸۱,۰۰۰', minQty:12, min:'حداقل ۱۲ عدد', img:'images/sk303.jpeg' },
+      { code:'sk304', name:'زیرانداز پشت مشمعی ۷۵×۶۰', price:'۳۸۱,۰۰۰', minQty:12, min:'حداقل ۱۲ عدد', img:'images/sk304.jpeg' },
+      { code:'sk305', name:'زیرانداز پشت مشمعی ۷۵×۶۰', price:'۳۸۱,۰۰۰', minQty:12, min:'حداقل ۱۲ عدد', img:'images/sk305.jpeg' },
+      { code:'sk306', name:'زیرانداز پشت مشمعی ۷۵×۶۰', price:'۳۸۱,۰۰۰', minQty:12, min:'حداقل ۱۲ عدد', img:'images/sk306.jpeg' },
+      { code:'sk307', name:'زیرانداز پشت مشمعی ۷۵×۶۰', price:'۳۸۱,۰۰۰', minQty:12, min:'حداقل ۱۲ عدد', img:'images/sk307.jpeg' },
+      { code:'sk308', name:'زیرانداز پشت مشمعی ۷۵×۶۰', price:'۳۸۱,۰۰۰', minQty:12, min:'حداقل ۱۲ عدد', img:'images/sk308.jpeg' },
+      { code:'sk309', name:'زیرانداز پشت مشمعی ۷۵×۶۰', price:'۳۸۱,۰۰۰', minQty:12, min:'حداقل ۱۲ عدد', img:'images/sk309.jpeg' },
+      { code:'sk310', name:'زیرانداز پشت مشمعی ۷۵×۶۰', price:'۳۸۱,۰۰۰', minQty:12, min:'حداقل ۱۲ عدد', img:'images/sk310.jpeg' },
+      { code:'sk311', name:'زیرانداز پشت مشمعی ۷۵×۶۰', price:'۳۸۱,۰۰۰', minQty:12, min:'حداقل ۱۲ عدد', img:'images/sk311.jpeg' },
+      { code:'sk312', name:'زیرانداز پشت مشمعی ۷۵×۶۰', price:'۳۸۱,۰۰۰', minQty:12, min:'حداقل ۱۲ عدد', img:'images/sk312.jpeg' },
     ]
   },
   balesh: {
     title: 'بالش شیردهی',
     items: [
-      { code:'sk401', name:'بالش شیردهی',               price:'۱۸۳,۰۰۰', minQty:6,  min:'حداقل ۶ عدد',  icon:'🌙' },
+      { code:'sk401', name:'بالش شیردهی', price:'۱۸۳,۰۰۰', minQty:6, min:'حداقل ۶ عدد', img:'images/sk401.jpeg' },
+      { code:'sk402', name:'بالش شیردهی', price:'۱۸۳,۰۰۰', minQty:6, min:'حداقل ۶ عدد', img:'images/sk402.jpeg' },
+      { code:'sk403', name:'بالش شیردهی', price:'۱۸۳,۰۰۰', minQty:6, min:'حداقل ۶ عدد', img:'images/sk403.jpeg' },
+      { code:'sk404', name:'بالش شیردهی', price:'۱۸۳,۰۰۰', minQty:6, min:'حداقل ۶ عدد', img:'images/sk404.jpeg' },
+      { code:'sk405', name:'بالش شیردهی', price:'۱۸۳,۰۰۰', minQty:6, min:'حداقل ۶ عدد', img:'images/sk405.jpeg' },
+      { code:'sk406', name:'بالش شیردهی', price:'۱۸۳,۰۰۰', minQty:6, min:'حداقل ۶ عدد', img:'images/sk406.jpeg' },
     ]
   },
   arogh: {
     title: 'آروغ‌گیر',
     items: [
-      { code:'sk501', name:'آروغ‌گیر سه عددی سایز بزرگ', price:'۳۲۵,۰۰۰', minQty:12, min:'حداقل ۱۲ عدد', icon:'⭐' },
+      { code:'sk501', name:'آروغ‌گیر سه عددی', price:'۳۲۵,۰۰۰', minQty:12, min:'حداقل ۱۲ عدد', img:'images/sk501.jpeg' },
+      { code:'sk502', name:'آروغ‌گیر سه عددی', price:'۳۲۵,۰۰۰', minQty:12, min:'حداقل ۱۲ عدد', img:'images/sk502.jpeg' },
+      { code:'sk503', name:'آروغ‌گیر سه عددی', price:'۳۲۵,۰۰۰', minQty:12, min:'حداقل ۱۲ عدد', img:'images/sk503.jpeg' },
+      { code:'sk504', name:'آروغ‌گیر سه عددی', price:'۳۲۵,۰۰۰', minQty:12, min:'حداقل ۱۲ عدد', img:'images/sk504.jpeg' },
+      { code:'sk505', name:'آروغ‌گیر سه عددی', price:'۳۲۵,۰۰۰', minQty:12, min:'حداقل ۱۲ عدد', img:'images/sk505.jpeg' },
+      { code:'sk506', name:'آروغ‌گیر سه عددی', price:'۳۲۵,۰۰۰', minQty:12, min:'حداقل ۱۲ عدد', img:'images/sk506.jpeg' },
     ]
   }
 };
@@ -800,8 +889,10 @@ function openCat(key) {
   document.getElementById('cat-title').textContent = cat.title;
   document.getElementById('cat-sub').textContent = cat.items.length + ' محصول';
   document.getElementById('prod-grid').innerHTML = cat.items.map((p,i) => `
-    <div class="prod-card" style="animation-delay:${i*0.07}s" onclick="openOrder('${p.code}','${p.name}','${p.price}','${p.icon}','${p.min}','${p.minQty}')">
-      <div class="prod-img">${p.icon}</div>
+    <div class="prod-card" style="animation-delay:${i*0.07}s" onclick="openOrder('${p.code}','${p.name}','${p.price}','${p.img}','${p.min}','${p.minQty}')">
+      <div class="prod-img">
+        <img src="${p.img}" alt="${p.name}" onerror="this.parentElement.innerHTML='🧸'">
+      </div>
       <div class="prod-body">
         <div class="prod-code">${p.code}</div>
         <div class="prod-name">${p.name}</div>
@@ -821,9 +912,9 @@ function goHome() {
   window.scrollTo(0,0);
 }
 
-function openOrder(code, name, price, icon, min, minQty) {
-  currentProduct = { code, name, price, icon, min, minQty: parseInt(minQty) };
-  document.getElementById('order-icon').textContent = icon;
+function openOrder(code, name, price, img, min, minQty) {
+  currentProduct = { code, name, price, img, min, minQty: parseInt(minQty) };
+  document.getElementById('order-icon').innerHTML = `<img src="${img}" style="width:100%;height:100%;object-fit:cover;border-radius:50%" onerror="this.parentElement.innerHTML='🧸'">`;
   document.getElementById('order-name').textContent = name;
   document.getElementById('order-code').textContent = code + ' · ' + price + ' تومان';
 
