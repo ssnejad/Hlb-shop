@@ -930,10 +930,6 @@ function openCatOrder(key) {
   document.getElementById('order-name').textContent = cat.title;
   document.getElementById('order-code').textContent = 'کدها: ' + currentProduct.codes;
 
-  // Reset stepper
-  currentProduct.qty = cat.items[0].minQty;
-  updateStepper();
-
   document.getElementById('f-name').value = '';
   document.getElementById('f-phone').value = '';
   document.getElementById('f-city').value = '';
@@ -944,20 +940,8 @@ function openCatOrder(key) {
   document.getElementById('order-overlay').classList.add('show');
 }
 
-function updateStepper() {
-  const qty = currentProduct.qty;
-  const minQty = currentProduct.minQty;
-  const packs = qty / minQty;
-  document.getElementById('qty-val').textContent = qty;
-  document.getElementById('qty-packs').textContent = packs + ' پک';
-  document.getElementById('qty-minus').disabled = qty <= minQty;
-}
-
-function changeQty(dir) {
-  currentProduct.qty += dir * currentProduct.minQty;
-  if (currentProduct.qty < currentProduct.minQty) currentProduct.qty = currentProduct.minQty;
-  updateStepper();
-}
+function updateStepper() { /* not used */ }
+function changeQty(dir) { /* not used */ }
 function closeOrder(e) {
   if (e.target === document.getElementById('order-overlay')) closeOrderPanel();
 }
