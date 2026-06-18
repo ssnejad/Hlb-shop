@@ -605,7 +605,9 @@
 <div id="home" class="page active">
 
   <div class="home-header">
-    <div class="logo-ring">👶</div>
+    <div class="logo-ring">
+      <img src="logo.png" alt="سلام کوچولو" style="width:90px;height:90px;object-fit:contain;border-radius:50%" onerror="this.outerHTML='👶'">
+    </div>
     <h1 class="home-title">سلام <span>کوچولو</span></h1>
     <p class="home-subtitle">تولید و پخش محصولات نوزادی · HLB Shop</p>
   </div>
@@ -874,6 +876,7 @@ function openCat(key) {
   const cat = data[key];
   document.getElementById('cat-title').textContent = cat.title;
   document.getElementById('cat-sub').textContent = cat.items.length + ' محصول';
+  const catKey = key;
   document.getElementById('prod-grid').innerHTML = cat.items.map((p,i) => `
     <div class="prod-card" style="animation-delay:${i*0.07}s">
       <div class="prod-img">
@@ -887,7 +890,7 @@ function openCat(key) {
     </div>
   `).join('') + `
     <div style="grid-column: 1/-1; padding: 8px 0 16px;">
-      <button onclick="openCatOrder('${key}')" style="
+      <button onclick="openCatOrder('${catKey}')" style="
         width: 100%;
         background: linear-gradient(135deg, var(--blue), var(--teal));
         color: white;
