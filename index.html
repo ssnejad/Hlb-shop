@@ -386,6 +386,8 @@
       padding: 24px 20px 40px;
       width: 100%;
       max-width: 500px;
+      max-height: 90vh;
+      overflow-y: auto;
       animation: slideUp 0.3s cubic-bezier(.34,1.56,.64,1);
     }
 
@@ -721,7 +723,6 @@
         <div class="order-product-icon" id="order-icon">🧣</div>
         <div>
           <div class="order-product-name" id="order-name">پیش‌بند آستین‌دار</div>
-          <div class="order-product-code" id="order-code">sk001</div>
         </div>
       </div>
 
@@ -735,8 +736,18 @@
         <label>شهر</label>
         <input type="text" id="f-city" placeholder="مثال: تهران" />
 
-        <label>جزئیات سفارش *</label>
-        <input type="text" id="f-note" placeholder="مثال: ۳ پک از sk101، ۲ پک از sk102" />
+        <label>تعداد پک *</label>
+        <div class="qty-stepper">
+          <button class="qty-btn" id="qty-minus" onclick="changeQty(-1)">−</button>
+          <div class="qty-display">
+            <div class="qty-number" id="qty-val">1</div>
+            <div class="qty-packs" id="qty-packs">۱ پک</div>
+          </div>
+          <button class="qty-btn" onclick="changeQty(1)">+</button>
+        </div>
+
+        <label>توضیحات (اختیاری)</label>
+        <input type="text" id="f-note" placeholder="هر توضیح اضافه‌ای..." />
       </div>
 
       <button class="order-submit" id="submit-btn" onclick="submitOrder()">ثبت سفارش 📨</button>
@@ -920,28 +931,37 @@ function openCatOrder(key) {
   currentProduct = {
     name: cat.title,
     code: key,
-    price: '',
     minQty: cat.items[0].minQty,
     img: cat.items[0].img,
-    isCat: true,
-    codes: cat.items.map(p => p.code).join('، ')
+    qty: cat.items[0].minQty
   };
   document.getElementById('order-icon').innerHTML = `<img src="${cat.items[0].img}" style="width:100%;height:100%;object-fit:cover;border-radius:50%" onerror="this.parentElement.innerHTML='🧸'">`;
   document.getElementById('order-name').textContent = cat.title;
-  document.getElementById('order-code').textContent = 'کدها: ' + currentProduct.codes;
+  updateStepper();
 
   document.getElementById('f-name').value = '';
   document.getElementById('f-phone').value = '';
   document.getElementById('f-city').value = '';
   document.getElementById('f-note').value = '';
-  document.getElementById('f-note').placeholder = 'مثال: ۳ پک از sk101، ۲ پک از sk102';
   document.getElementById('order-form-wrap').style.display = 'block';
   document.getElementById('success-msg').classList.remove('show');
   document.getElementById('order-overlay').classList.add('show');
 }
 
-function updateStepper() { /* not used */ }
-function changeQty(dir) { /* not used */ }
+function updateStepper() {
+  const qty = currentProduct.qty;
+  const minQty = currentProduct.minQty;
+  const packs = qty / minQty;
+  document.getElementById('qty-val').textContent = qty;
+  document.getElementById('qty-packs').textContent = packs + ' پک';
+  document.getElementById('qty-minus').disabled = qty <= minQty;
+}
+
+function changeQty(dir) {
+  currentProduct.qty += dir * currentProduct.minQty;
+  if (currentProduct.qty < currentProduct.minQty) currentProduct.qty = currentProduct.minQty;
+  updateStepper();
+}
 function closeOrder(e) {
   if (e.target === document.getElementById('order-overlay')) closeOrderPanel();
 }
@@ -956,9 +976,10 @@ async function submitOrder() {
   const qty   = currentProduct.qty;
   const city  = document.getElementById('f-city').value.trim();
   const note  = document.getElementById('f-note').value.trim();
+  const packs = qty / currentProduct.minQty;
 
-  if (!name || !phone || !note) {
-    alert('لطفاً نام، شماره موبایل و جزئیات سفارش را وارد کنید');
+  if (!name || !phone) {
+    alert('لطفاً نام و شماره موبایل را وارد کنید');
     return;
   }
 
@@ -970,7 +991,8 @@ async function submitOrder() {
 🛒 سفارش جدید سلام کوچولو
 
 📦 دسته: ${currentProduct.name}
-🔖 جزئیات سفارش: ${note || 'ذکر نشده'}
+📊 تعداد: ${qty} عدد (${packs} پک)
+📝 توضیحات: ${note || 'ندارد'}
 
 👤 نام: ${name}
 📱 موبایل: ${phone}
