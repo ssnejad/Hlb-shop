@@ -24,587 +24,136 @@
       --text-light: #8FA3B0;
       --shadow-sm:  0 2px 12px rgba(46,134,193,0.10);
       --shadow-md:  0 6px 24px rgba(46,134,193,0.18);
-      --shadow-lg:  0 12px 40px rgba(46,134,193,0.22);
       --radius-sm:  12px;
       --radius-md:  20px;
       --radius-lg:  28px;
     }
-
     * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
-
-    body {
-      font-family: 'Vazirmatn', sans-serif;
-      background: var(--cloud);
-      color: var(--text);
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-
-    /* ── PAGES ── */
-    .page { display: none; min-height: 100vh; flex-direction: column; }
-    .page.active { display: flex; }
-
-    /* ══════════════════════════════
-       HOME
-    ══════════════════════════════ */
-    #home {
-      padding: 0 0 90px;
-      align-items: center;
-    }
-
-    /* Header */
-    .home-header {
-      width: 100%;
-      background: linear-gradient(160deg, var(--blue) 0%, var(--teal) 100%);
-      padding: 48px 24px 60px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .home-header::before {
-      content: '';
-      position: absolute;
-      width: 300px; height: 300px;
-      background: rgba(255,255,255,0.06);
-      border-radius: 50%;
-      top: -80px; left: -80px;
-    }
-
-    .home-header::after {
-      content: '';
-      position: absolute;
-      width: 200px; height: 200px;
-      background: rgba(255,255,255,0.05);
-      border-radius: 50%;
-      bottom: -60px; right: -40px;
-    }
-
-    .logo-ring {
-      width: 150px; height: 150px;
-      background: white;
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: 18px;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.15);
-      animation: popIn 0.5s cubic-bezier(.34,1.56,.64,1) both;
-      position: relative; z-index: 1;
-      overflow: hidden;
-    }
-
-    .home-title {
-      font-size: 26px; font-weight: 700;
-      color: var(--white);
-      letter-spacing: -0.5px;
-      animation: fadeDown 0.5s ease 0.1s both;
-      position: relative; z-index: 1;
-    }
-
-    .home-title span { color: var(--gold); }
-
-    .home-subtitle {
-      font-size: 12px; font-weight: 300;
-      color: rgba(255,255,255,0.75);
-      margin-top: 6px;
-      animation: fadeDown 0.5s ease 0.2s both;
-      position: relative; z-index: 1;
-    }
-
-    /* Wave */
-    .wave {
-      width: 100%;
-      margin-top: -2px;
-    }
-
-    /* Categories */
-    .section-label {
-      font-size: 12px; font-weight: 500;
-      color: var(--text-light);
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      margin: 28px 0 16px;
-      padding: 0 20px;
-      align-self: flex-start;
-    }
-
-    .cats-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-      padding: 0 16px;
-      width: 100%;
-      max-width: 440px;
-      animation: fadeUp 0.5s ease 0.2s both;
-    }
-
-    .cat-card {
-      background: var(--white);
-      border-radius: var(--radius-md);
-      padding: 20px 10px 16px;
-      display: flex; flex-direction: column;
-      align-items: center; gap: 10px;
-      cursor: pointer;
-      box-shadow: var(--shadow-sm);
-      transition: all 0.22s ease;
-      border: 2px solid transparent;
-      position: relative; overflow: hidden;
-    }
-
-    .cat-card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, var(--blue-light), transparent);
-      opacity: 0;
-      transition: opacity 0.22s;
-    }
-
-    .cat-card:hover::before, .cat-card:active::before { opacity: 1; }
-
-    .cat-card:hover {
-      transform: translateY(-5px);
-      border-color: var(--blue-mid);
-      box-shadow: var(--shadow-md);
-    }
-
-    .cat-icon {
-      width: 58px; height: 58px;
-      background: var(--blue-light);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 26px;
-      transition: transform 0.22s;
-      position: relative; z-index: 1;
-    }
-
-    .cat-card:hover .cat-icon { transform: scale(1.1); }
-
-    .cat-name {
-      font-size: 11px; font-weight: 600;
-      color: var(--text);
-      text-align: center;
-      line-height: 1.5;
-      position: relative; z-index: 1;
-    }
-
-    .cat-count {
-      font-size: 10px;
-      color: var(--text-light);
-      position: relative; z-index: 1;
-    }
-
-    /* Badges */
-    .badge {
-      position: absolute;
-      top: 10px; left: 10px;
-      background: var(--gold);
-      color: white;
-      font-size: 9px; font-weight: 700;
-      padding: 2px 7px;
-      border-radius: 20px;
-    }
-
-    /* ══════════════════════════════
-       PRODUCTS PAGE
-    ══════════════════════════════ */
-    #products { padding-bottom: 90px; }
-
-    .prod-header {
-      background: linear-gradient(135deg, var(--blue), var(--teal));
-      padding: 16px 16px 28px;
-      display: flex; align-items: center; gap: 14px;
-      position: sticky; top: 0; z-index: 50;
-    }
-
-    .back-btn {
-      width: 38px; height: 38px;
-      background: rgba(255,255,255,0.18);
-      border: none; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer; color: white; font-size: 18px;
-      transition: background 0.2s;
-      flex-shrink: 0;
-    }
-
-    .back-btn:hover { background: rgba(255,255,255,0.3); }
-
-    .prod-header-info { flex: 1; }
-
-    .prod-header-title {
-      font-size: 18px; font-weight: 700;
-      color: white;
-    }
-
-    .prod-header-sub {
-      font-size: 11px;
-      color: rgba(255,255,255,0.75);
-      margin-top: 2px;
-    }
-
-    .prod-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-      padding: 18px 14px;
-    }
-
-    .prod-card {
-      background: var(--white);
-      border-radius: var(--radius-md);
-      overflow: hidden;
-      box-shadow: var(--shadow-sm);
-      cursor: pointer;
-      transition: all 0.22s ease;
-      animation: fadeUp 0.4s ease both;
-    }
-
-    .prod-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-md);
-    }
-
-    .prod-img {
-      width: 100%; aspect-ratio: 1;
-      background: linear-gradient(135deg, var(--blue-light), var(--teal-light));
-      display: flex; align-items: center; justify-content: center;
-      font-size: 52px;
-      position: relative;
-    }
-
-    .prod-img img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-    }
-
-    .prod-body { padding: 12px 12px 14px; }
-
-    .prod-code {
-      display: inline-block;
-      font-size: 10px; font-weight: 600;
-      color: var(--blue);
-      background: var(--blue-light);
-      padding: 3px 9px;
-      border-radius: 20px;
-      margin-bottom: 6px;
-    }
-
-    .prod-name {
-      font-size: 13px; font-weight: 600;
-      color: var(--text);
-      line-height: 1.4;
-      margin-bottom: 8px;
-    }
-
-    .prod-price {
-      font-size: 15px; font-weight: 700;
-      color: var(--teal);
-    }
-
-    .prod-price span {
-      font-size: 11px; font-weight: 400;
-      color: var(--text-light);
-    }
-
-    .prod-min {
-      font-size: 10px;
-      color: var(--text-light);
-      margin-top: 3px;
-      display: flex; align-items: center; gap: 4px;
-    }
-
-    .prod-min::before {
-      content: '📦';
-      font-size: 10px;
-    }
-
-    /* ══════════════════════════════
-       CONTACT BAR
-    ══════════════════════════════ */
-    .contact-bar {
-      position: fixed;
-      bottom: 0; left: 0; right: 0;
-      background: var(--white);
-      padding: 10px 8px calc(10px + env(safe-area-inset-bottom));
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      box-shadow: 0 -4px 24px rgba(0,0,0,0.08);
-      z-index: 200;
-    }
-
-    .c-btn {
-      display: flex; flex-direction: column;
-      align-items: center; gap: 4px;
-      text-decoration: none;
-      cursor: pointer;
-      transition: transform 0.18s;
-      flex: 1;
-    }
-
-    .c-btn:hover { transform: scale(1.08); }
-
-    .c-icon {
-      width: 46px; height: 46px;
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 20px;
-    }
-
-    .c-wa  { background: #E8F5E9; }
-    .c-ig  { background: #FCE4EC; }
-    .c-tel { background: var(--blue-light); }
-    .c-loc { background: var(--gold-light); }
-
-    .c-label {
-      font-size: 9px; font-weight: 500;
-      color: var(--text-light);
-    }
-
-    /* ══════════════════════════════
-       ORDER FORM
-    ══════════════════════════════ */
-    .order-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.5);
-      z-index: 300;
-      align-items: flex-end;
-      justify-content: center;
-    }
-
-    .order-overlay.show {
-      display: flex;
-      animation: fadeIn 0.2s ease;
-    }
-
-    .order-sheet {
-      background: var(--white);
-      border-radius: 28px 28px 0 0;
-      padding: 24px 20px 40px;
-      width: 100%;
-      max-width: 500px;
-      max-height: 90vh;
-      overflow-y: auto;
-      animation: slideUp 0.3s cubic-bezier(.34,1.56,.64,1);
-    }
-
-    .order-handle {
-      width: 40px; height: 4px;
-      background: #E0E0E0;
-      border-radius: 2px;
-      margin: 0 auto 20px;
-    }
-
-    .order-title {
-      font-size: 16px; font-weight: 700;
-      color: var(--text);
-      margin-bottom: 4px;
-    }
-
-    .order-subtitle {
-      font-size: 12px;
-      color: var(--text-light);
-      margin-bottom: 20px;
-    }
-
-    .order-product-info {
-      background: var(--blue-light);
-      border-radius: var(--radius-sm);
-      padding: 12px 16px;
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .order-product-icon { font-size: 28px; }
-
-    .order-product-name {
-      font-size: 13px; font-weight: 600;
-      color: var(--text);
-    }
-
-    .order-product-code {
-      font-size: 11px;
-      color: var(--blue);
-    }
-
-    .order-form label {
-      display: block;
-      font-size: 12px; font-weight: 500;
-      color: var(--text-mid);
-      margin-bottom: 6px;
-      margin-top: 14px;
-    }
-
-    .order-form input {
-      width: 100%;
-      border: 1.5px solid #E0E8F0;
-      border-radius: var(--radius-sm);
-      padding: 12px 14px;
-      font-family: 'Vazirmatn', sans-serif;
-      font-size: 14px;
-      color: var(--text);
-      background: var(--cloud);
-      outline: none;
-      transition: border-color 0.2s;
-      text-align: right;
-    }
-
-    .order-form input:focus {
-      border-color: var(--blue);
-      background: var(--white);
-    }
-
-    .order-submit {
-      width: 100%;
-      background: linear-gradient(135deg, var(--blue), var(--teal));
-      color: white;
-      border: none;
-      border-radius: var(--radius-sm);
-      padding: 14px;
-      font-family: 'Vazirmatn', sans-serif;
-      font-size: 15px; font-weight: 700;
-      cursor: pointer;
-      margin-top: 20px;
-      transition: opacity 0.2s, transform 0.2s;
-    }
-
-    .order-submit:hover { opacity: 0.9; transform: scale(0.99); }
-    .order-submit:disabled { opacity: 0.6; cursor: not-allowed; }
-
-    .order-cancel {
-      width: 100%;
-      background: transparent;
-      color: var(--text-light);
-      border: none;
-      padding: 12px;
-      font-family: 'Vazirmatn', sans-serif;
-      font-size: 13px;
-      cursor: pointer;
-      margin-top: 8px;
-    }
-
-    /* Pack Stepper */
-    .qty-stepper {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: var(--cloud);
-      border: 1.5px solid #E0E8F0;
-      border-radius: var(--radius-sm);
-      padding: 8px 12px;
-      margin-top: 6px;
-    }
-
-    .qty-btn {
-      width: 36px; height: 36px;
-      border: none;
-      background: var(--white);
-      border-radius: 50%;
-      font-size: 20px;
-      cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      box-shadow: var(--shadow-sm);
-      transition: all 0.15s;
-      color: var(--blue);
-      font-weight: 700;
-    }
-
-    .qty-btn:hover { background: var(--blue-light); transform: scale(1.05); }
-    .qty-btn:disabled { opacity: 0.3; cursor: not-allowed; transform: none; }
-
-    .qty-display {
-      display: flex; flex-direction: column;
-      align-items: center; gap: 2px;
-    }
-
-    .qty-number {
-      font-size: 22px; font-weight: 700;
-      color: var(--text);
-    }
-
-    .qty-packs {
-      font-size: 10px;
-      color: var(--text-light);
-    }
-    .success-msg {
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      padding: 20px 0;
-      gap: 12px;
-    }
-
-    .success-msg.show { display: flex; }
-
-    .success-icon {
-      width: 70px; height: 70px;
-      background: var(--teal-light);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 36px;
-    }
-
-    .success-text {
-      font-size: 16px; font-weight: 700;
-      color: var(--teal);
-    }
-
-    .success-sub {
-      font-size: 12px;
-      color: var(--text-light);
-      text-align: center;
-    }
-
-    /* ══════════════════════════════
-       ANIMATIONS
-    ══════════════════════════════ */
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    @keyframes slideUp {
-      from { transform: translateY(100%); }
-      to { transform: translateY(0); }
-    }
-    @keyframes popIn {
-      from { opacity:0; transform: scale(0.6); }
-      to   { opacity:1; transform: scale(1); }
-    }
-    @keyframes fadeDown {
-      from { opacity:0; transform: translateY(-14px); }
-      to   { opacity:1; transform: translateY(0); }
-    }
-    @keyframes fadeUp {
-      from { opacity:0; transform: translateY(18px); }
-      to   { opacity:1; transform: translateY(0); }
-    }
-
-    /* ══════════════════════════════
-       RESPONSIVE
-    ══════════════════════════════ */
-    @media (min-width: 480px) {
-      .cats-grid { max-width: 460px; }
-    }
-    @media (min-width: 600px) {
-      .prod-grid { grid-template-columns: repeat(3, 1fr); }
-    }
-    @media (min-width: 900px) {
-      .prod-grid { grid-template-columns: repeat(4, 1fr); }
-      #home { padding-top: 20px; }
-    }
+    body { font-family:'Vazirmatn',sans-serif; background:var(--cloud); color:var(--text); min-height:100vh; overflow-x:hidden; }
+    .page { display:none; min-height:100vh; flex-direction:column; }
+    .page.active { display:flex; }
+
+    /* HOME */
+    #home { padding:0 0 90px; align-items:center; }
+    .home-header { width:100%; background:linear-gradient(160deg,var(--blue) 0%,var(--teal) 100%); padding:48px 24px 60px; display:flex; flex-direction:column; align-items:center; position:relative; overflow:hidden; }
+    .home-header::before { content:''; position:absolute; width:300px; height:300px; background:rgba(255,255,255,0.06); border-radius:50%; top:-80px; left:-80px; }
+    .logo-ring { width:150px; height:150px; background:white; border-radius:50%; display:flex; align-items:center; justify-content:center; margin-bottom:18px; box-shadow:0 8px 30px rgba(0,0,0,0.15); animation:popIn 0.5s cubic-bezier(.34,1.56,.64,1) both; position:relative; z-index:1; overflow:hidden; }
+    .home-title { font-size:26px; font-weight:700; color:var(--white); letter-spacing:-0.5px; animation:fadeDown 0.5s ease 0.1s both; position:relative; z-index:1; }
+    .home-title span { color:var(--gold); }
+    .home-subtitle { font-size:12px; font-weight:300; color:rgba(255,255,255,0.75); margin-top:6px; animation:fadeDown 0.5s ease 0.2s both; position:relative; z-index:1; }
+    .wave { width:100%; margin-top:-2px; }
+    .section-label { font-size:12px; font-weight:500; color:var(--text-light); letter-spacing:1px; margin:28px 0 16px; padding:0 20px; align-self:flex-start; }
+    .cats-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; padding:0 16px; width:100%; max-width:440px; animation:fadeUp 0.5s ease 0.2s both; }
+    .cat-card { background:var(--white); border-radius:var(--radius-md); padding:20px 10px 16px; display:flex; flex-direction:column; align-items:center; gap:10px; cursor:pointer; box-shadow:var(--shadow-sm); transition:all 0.22s ease; border:2px solid transparent; position:relative; overflow:hidden; }
+    .cat-card:hover { transform:translateY(-5px); border-color:var(--blue-mid); box-shadow:var(--shadow-md); }
+    .cat-icon { width:58px; height:58px; background:var(--blue-light); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:26px; }
+    .cat-name { font-size:11px; font-weight:600; color:var(--text); text-align:center; line-height:1.5; }
+    .cat-count { font-size:10px; color:var(--text-light); }
+
+    /* PRODUCTS */
+    #products { padding-bottom:90px; }
+    .prod-header { background:linear-gradient(135deg,var(--blue),var(--teal)); padding:16px 16px 28px; display:flex; align-items:center; gap:14px; position:sticky; top:0; z-index:50; }
+    .back-btn { width:38px; height:38px; background:rgba(255,255,255,0.18); border:none; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; color:white; font-size:20px; transition:background 0.2s; flex-shrink:0; }
+    .back-btn:hover { background:rgba(255,255,255,0.3); }
+    .prod-header-title { font-size:18px; font-weight:700; color:white; }
+    .prod-header-sub { font-size:11px; color:rgba(255,255,255,0.75); margin-top:2px; }
+    .prod-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; padding:18px 14px; }
+    .prod-card { background:var(--white); border-radius:var(--radius-md); overflow:hidden; box-shadow:var(--shadow-sm); transition:all 0.22s ease; animation:fadeUp 0.4s ease both; }
+    .prod-card:hover { transform:translateY(-4px); box-shadow:var(--shadow-md); }
+    .prod-img { width:100%; aspect-ratio:1; background:linear-gradient(135deg,var(--blue-light),var(--teal-light)); display:flex; align-items:center; justify-content:center; font-size:52px; }
+    .prod-img img { width:100%; height:100%; object-fit:cover; }
+    .prod-body { padding:12px 12px 14px; }
+    .prod-code { display:inline-block; font-size:10px; font-weight:600; color:var(--blue); background:var(--blue-light); padding:3px 9px; border-radius:20px; margin-bottom:6px; }
+    .prod-price { font-size:15px; font-weight:700; color:var(--teal); }
+    .prod-price span { font-size:11px; font-weight:400; color:var(--text-light); }
+    .prod-min { font-size:10px; color:var(--text-light); margin-top:3px; }
+
+    /* ORDER BTN */
+    .order-btn-wrap { grid-column:1/-1; padding:8px 0 16px; }
+    .order-btn-main { width:100%; background:linear-gradient(135deg,var(--blue),var(--teal)); color:white; border:none; border-radius:16px; padding:16px; font-family:'Vazirmatn',sans-serif; font-size:16px; font-weight:700; cursor:pointer; box-shadow:0 4px 16px rgba(46,134,193,0.3); display:flex; align-items:center; justify-content:center; gap:8px; }
+
+    /* CART PAGE */
+    #cart { padding-bottom:90px; }
+    .cart-item { background:var(--white); border-radius:var(--radius-md); padding:16px; margin:0 14px 12px; display:flex; align-items:center; gap:12px; box-shadow:var(--shadow-sm); }
+    .cart-item-img { width:60px; height:60px; border-radius:12px; object-fit:cover; background:var(--blue-light); flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:24px; overflow:hidden; }
+    .cart-item-img img { width:100%; height:100%; object-fit:cover; }
+    .cart-item-info { flex:1; }
+    .cart-item-name { font-size:13px; font-weight:600; color:var(--text); margin-bottom:4px; }
+    .cart-item-qty { font-size:11px; color:var(--text-light); }
+    .cart-item-price { font-size:14px; font-weight:700; color:var(--teal); }
+    .cart-item-remove { width:32px; height:32px; background:#FEE2E2; border:none; border-radius:50%; cursor:pointer; font-size:16px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .cart-total { background:var(--white); border-radius:var(--radius-md); padding:16px 20px; margin:0 14px 16px; box-shadow:var(--shadow-sm); }
+    .cart-total-row { display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-bottom:1px solid var(--cloud); }
+    .cart-total-row:last-child { border-bottom:none; font-size:16px; font-weight:700; color:var(--teal); }
+    .cart-checkout-btn { display:block; width:calc(100% - 28px); margin:0 14px; background:linear-gradient(135deg,var(--blue),var(--teal)); color:white; border:none; border-radius:16px; padding:16px; font-family:'Vazirmatn',sans-serif; font-size:16px; font-weight:700; cursor:pointer; box-shadow:0 4px 16px rgba(46,134,193,0.3); }
+    .cart-empty { display:flex; flex-direction:column; align-items:center; justify-content:center; flex:1; gap:16px; padding:40px; }
+    .cart-empty-icon { font-size:64px; }
+    .cart-empty-text { font-size:16px; color:var(--text-light); text-align:center; }
+
+    /* STEPPER */
+    .qty-stepper { display:flex; align-items:center; justify-content:space-between; background:var(--cloud); border:1.5px solid #E0E8F0; border-radius:var(--radius-sm); padding:8px 12px; margin-top:6px; }
+    .qty-btn { width:36px; height:36px; border:none; background:var(--white); border-radius:50%; font-size:20px; cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:var(--shadow-sm); transition:all 0.15s; color:var(--blue); font-weight:700; }
+    .qty-btn:hover { background:var(--blue-light); transform:scale(1.05); }
+    .qty-btn:disabled { opacity:0.3; cursor:not-allowed; transform:none; }
+    .qty-display { display:flex; flex-direction:column; align-items:center; gap:2px; }
+    .qty-number { font-size:22px; font-weight:700; color:var(--text); }
+    .qty-packs { font-size:10px; color:var(--text-light); }
+
+    /* CONTACT BAR */
+    .contact-bar { position:fixed; bottom:0; left:0; right:0; background:var(--white); padding:10px 8px calc(10px + env(safe-area-inset-bottom)); display:flex; justify-content:space-around; align-items:center; box-shadow:0 -4px 24px rgba(0,0,0,0.08); z-index:200; }
+    .c-btn { display:flex; flex-direction:column; align-items:center; gap:4px; text-decoration:none; cursor:pointer; transition:transform 0.18s; flex:1; }
+    .c-btn:hover { transform:scale(1.08); }
+    .c-icon { width:46px; height:46px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:20px; }
+    .c-wa { background:#E8F5E9; }
+    .c-ig { background:#FCE4EC; }
+    .c-tel { background:var(--blue-light); }
+    .c-loc { background:var(--gold-light); }
+    .c-label { font-size:9px; font-weight:500; color:var(--text-light); }
+
+    /* CART BADGE */
+    .cart-fab { position:fixed; bottom:80px; left:16px; width:56px; height:56px; background:linear-gradient(135deg,var(--gold),#E8920F); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:24px; box-shadow:0 4px 16px rgba(245,166,35,0.4); cursor:pointer; z-index:150; border:none; transition:transform 0.2s; }
+    .cart-fab:hover { transform:scale(1.1); }
+    .cart-badge { position:absolute; top:-4px; right:-4px; background:#EF4444; color:white; border-radius:50%; width:22px; height:22px; font-size:11px; font-weight:700; display:flex; align-items:center; justify-content:center; display:none; }
+    .cart-badge.show { display:flex; }
+
+    /* ORDER OVERLAY */
+    .order-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:300; align-items:flex-end; justify-content:center; }
+    .order-overlay.show { display:flex; animation:fadeIn 0.2s ease; }
+    .order-sheet { background:var(--white); border-radius:28px 28px 0 0; padding:24px 20px 40px; width:100%; max-width:500px; max-height:90vh; overflow-y:auto; animation:slideUp 0.3s cubic-bezier(.34,1.56,.64,1); }
+    .order-handle { width:40px; height:4px; background:#E0E0E0; border-radius:2px; margin:0 auto 20px; }
+    .order-title { font-size:16px; font-weight:700; color:var(--text); margin-bottom:4px; }
+    .order-subtitle { font-size:12px; color:var(--text-light); margin-bottom:20px; }
+    .order-product-info { background:var(--blue-light); border-radius:var(--radius-sm); padding:12px 16px; margin-bottom:20px; display:flex; align-items:center; gap:12px; }
+    .order-product-icon { width:50px; height:50px; border-radius:50%; overflow:hidden; display:flex; align-items:center; justify-content:center; font-size:28px; background:white; flex-shrink:0; }
+    .order-product-name { font-size:13px; font-weight:600; color:var(--text); }
+    .order-form label { display:block; font-size:12px; font-weight:500; color:var(--text-mid); margin-bottom:6px; margin-top:14px; }
+    .order-form input { width:100%; border:1.5px solid #E0E8F0; border-radius:var(--radius-sm); padding:12px 14px; font-family:'Vazirmatn',sans-serif; font-size:14px; color:var(--text); background:var(--cloud); outline:none; transition:border-color 0.2s; text-align:right; }
+    .order-form input:focus { border-color:var(--blue); background:var(--white); }
+    .order-submit { width:100%; background:linear-gradient(135deg,var(--blue),var(--teal)); color:white; border:none; border-radius:var(--radius-sm); padding:14px; font-family:'Vazirmatn',sans-serif; font-size:15px; font-weight:700; cursor:pointer; margin-top:20px; transition:opacity 0.2s; }
+    .order-submit:hover { opacity:0.9; }
+    .order-submit:disabled { opacity:0.6; cursor:not-allowed; }
+    .order-cancel { width:100%; background:transparent; color:var(--text-light); border:none; padding:12px; font-family:'Vazirmatn',sans-serif; font-size:13px; cursor:pointer; margin-top:8px; }
+    .success-msg { display:none; flex-direction:column; align-items:center; padding:20px 0; gap:12px; }
+    .success-msg.show { display:flex; }
+    .success-icon { width:70px; height:70px; background:var(--teal-light); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:36px; }
+    .success-text { font-size:16px; font-weight:700; color:var(--teal); }
+    .success-sub { font-size:12px; color:var(--text-light); text-align:center; }
+
+    /* ANIMATIONS */
+    @keyframes popIn { from{opacity:0;transform:scale(0.6)} to{opacity:1;transform:scale(1)} }
+    @keyframes fadeDown { from{opacity:0;transform:translateY(-14px)} to{opacity:1;transform:translateY(0)} }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:translateY(0)} }
+    @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+    @keyframes slideUp { from{transform:translateY(100%)} to{transform:translateY(0)} }
+
+    @media (min-width:600px) { .prod-grid{grid-template-columns:repeat(3,1fr)} }
+    @media (min-width:900px) { .prod-grid{grid-template-columns:repeat(4,1fr)} }
   </style>
 </head>
 <body>
 
-<!-- ══════════════ HOME ══════════════ -->
+<!-- HOME -->
 <div id="home" class="page active">
-
   <div class="home-header">
     <div class="logo-ring">
       <img src="logo.png" alt="سلام کوچولو" style="width:150px;height:150px;object-fit:contain;" onerror="this.outerHTML='👶'">
@@ -612,332 +161,334 @@
     <h1 class="home-title">سلام <span>کوچولو</span></h1>
     <p class="home-subtitle">تولید و پخش محصولات نوزادی · HLB Shop</p>
   </div>
-
-  <!-- Wave divider -->
   <svg class="wave" viewBox="0 0 1440 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M0,20 C360,40 1080,0 1440,20 L1440,0 L0,0 Z" fill="url(#wg)"/>
-    <defs>
-      <linearGradient id="wg" x1="0" y1="0" x2="1" y2="0">
-        <stop offset="0%" stop-color="#2E86C1"/>
-        <stop offset="100%" stop-color="#00B5AD"/>
-      </linearGradient>
-    </defs>
+    <defs><linearGradient id="wg" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#2E86C1"/><stop offset="100%" stop-color="#00B5AD"/></linearGradient></defs>
   </svg>
-
   <p class="section-label">دسته‌بندی محصولات</p>
-
   <div class="cats-grid">
-    <div class="cat-card" onclick="openCat('pishband_astan')">
-      <div class="cat-icon">🧣</div>
-      <div class="cat-name">پیش‌بند آستین‌دار</div>
-      <div class="cat-count">۶ طرح</div>
-    </div>
-    <div class="cat-card" onclick="openCat('pishband_zhile')">
-      <div class="cat-icon">🧣</div>
-      <div class="cat-name">پیش‌بند ژیله‌ای</div>
-      <div class="cat-count">۶ طرح</div>
-    </div>
-    <div class="cat-card" onclick="openCat('pishband_do')">
-      <div class="cat-icon">🧣</div>
-      <div class="cat-name">پیش‌بند دو عددی</div>
-      <div class="cat-count">۱۰ طرح</div>
-    </div>
-    <div class="cat-card" onclick="openCat('pishband_se')">
-      <div class="cat-icon">🧣</div>
-      <div class="cat-name">پیش‌بند سه عددی</div>
-      <div class="cat-count">۶ طرح</div>
-      <div class="badge">پرفروش</div>
-    </div>
-    <div class="cat-card" onclick="openCat('dastmal')">
-      <div class="cat-icon">🤍</div>
-      <div class="cat-name">دستمال گردن</div>
-      <div class="cat-count">۱۰ طرح</div>
-    </div>
-    <div class="cat-card" onclick="openCat('pato')">
-      <div class="cat-icon">🛏️</div>
-      <div class="cat-name">پتو کلاهدار</div>
-      <div class="cat-count">۶ طرح</div>
-    </div>
-    <div class="cat-card" onclick="openCat('ziranaz')">
-      <div class="cat-icon">🟦</div>
-      <div class="cat-name">زیرانداز</div>
-      <div class="cat-count">۱۲ طرح</div>
-    </div>
-    <div class="cat-card" onclick="openCat('balesh')">
-      <div class="cat-icon">🌙</div>
-      <div class="cat-name">بالش شیردهی</div>
-      <div class="cat-count">۶ طرح</div>
-    </div>
-    <div class="cat-card" onclick="openCat('arogh')">
-      <div class="cat-icon">⭐</div>
-      <div class="cat-name">آروغ‌گیر</div>
-      <div class="cat-count">۲ طرح</div>
-    </div>
+    <div class="cat-card" onclick="openCat('pishband_astan')"><div class="cat-icon">🧣</div><div class="cat-name">پیش‌بند آستین‌دار</div><div class="cat-count">۶ طرح</div></div>
+    <div class="cat-card" onclick="openCat('pishband_zhile')"><div class="cat-icon">🧣</div><div class="cat-name">پیش‌بند ژیله‌ای</div><div class="cat-count">۶ طرح</div></div>
+    <div class="cat-card" onclick="openCat('pishband_do')"><div class="cat-icon">🧣</div><div class="cat-name">پیش‌بند دو عددی</div><div class="cat-count">۱۰ طرح</div></div>
+    <div class="cat-card" onclick="openCat('pishband_se')"><div class="cat-icon">🧣</div><div class="cat-name">پیش‌بند سه عددی</div><div class="cat-count">۶ طرح</div></div>
+    <div class="cat-card" onclick="openCat('dastmal')"><div class="cat-icon">🤍</div><div class="cat-name">دستمال گردن</div><div class="cat-count">۱۰ طرح</div></div>
+    <div class="cat-card" onclick="openCat('pato')"><div class="cat-icon">🛏️</div><div class="cat-name">پتو کلاهدار</div><div class="cat-count">۶ طرح</div></div>
+    <div class="cat-card" onclick="openCat('ziranaz')"><div class="cat-icon">🟦</div><div class="cat-name">زیرانداز</div><div class="cat-count">۱۲ طرح</div></div>
+    <div class="cat-card" onclick="openCat('balesh')"><div class="cat-icon">🌙</div><div class="cat-name">بالش شیردهی</div><div class="cat-count">۶ طرح</div></div>
+    <div class="cat-card" onclick="openCat('arogh')"><div class="cat-icon">⭐</div><div class="cat-name">آروغ‌گیر</div><div class="cat-count">۲ طرح</div></div>
   </div>
-
 </div>
 
-<!-- ══════════════ PRODUCTS ══════════════ -->
+<!-- PRODUCTS -->
 <div id="products" class="page">
   <div class="prod-header">
     <button class="back-btn" onclick="goHome()">›</button>
-    <div class="prod-header-info">
-      <div class="prod-header-title" id="cat-title">پیش‌بند</div>
-      <div class="prod-header-sub" id="cat-sub">۴ محصول</div>
+    <div>
+      <div class="prod-header-title" id="cat-title">محصولات</div>
+      <div class="prod-header-sub" id="cat-sub"></div>
     </div>
   </div>
   <div class="prod-grid" id="prod-grid"></div>
 </div>
 
-<!-- ══════════════ CONTACT BAR ══════════════ -->
-<div class="contact-bar">
-  <a href="https://wa.me/989125674059" class="c-btn" target="_blank">
-    <div class="c-icon c-wa">💬</div>
-    <span class="c-label">واتساپ</span>
-  </a>
-  <a href="https://instagram.com/hello.little.baby" class="c-btn" target="_blank">
-    <div class="c-icon c-ig">📸</div>
-    <span class="c-label">اینستاگرام</span>
-  </a>
-  <a href="tel:09125674059" class="c-btn">
-    <div class="c-icon c-tel">📞</div>
-    <span class="c-label">۰۹۱۲۵۶۷۴۰۵۹</span>
-  </a>
-  <a href="tel:09128609131" class="c-btn">
-    <div class="c-icon c-loc">📱</div>
-    <span class="c-label">۰۹۱۲۸۶۰۹۱۳۱</span>
-  </a>
+<!-- CART -->
+<div id="cart" class="page">
+  <div class="prod-header">
+    <button class="back-btn" onclick="goHome()">›</button>
+    <div>
+      <div class="prod-header-title">سبد سفارش 🛒</div>
+      <div class="prod-header-sub" id="cart-sub"></div>
+    </div>
+  </div>
+  <div id="cart-body"></div>
 </div>
 
-<!-- ══════════════ ORDER OVERLAY ══════════════ -->
-<div class="order-overlay" id="order-overlay" onclick="closeOrder(event)">
+<!-- CART FAB -->
+<button class="cart-fab" onclick="showCart()">
+  🛒
+  <div class="cart-badge" id="cart-badge">0</div>
+</button>
+
+<!-- CONTACT BAR -->
+<div class="contact-bar">
+  <a href="https://wa.me/989125674059" class="c-btn" target="_blank"><div class="c-icon c-wa">💬</div><span class="c-label">واتساپ</span></a>
+  <a href="https://instagram.com/salamkoochoolo" class="c-btn" target="_blank"><div class="c-icon c-ig">📸</div><span class="c-label">اینستاگرام</span></a>
+  <a href="tel:09125674059" class="c-btn"><div class="c-icon c-tel">📞</div><span class="c-label">۰۹۱۲۵۶۷۴۰۵۹</span></a>
+  <a href="tel:09128609131" class="c-btn"><div class="c-icon c-loc">📱</div><span class="c-label">۰۹۱۲۸۶۰۹۱۳۱</span></a>
+</div>
+
+<!-- ORDER OVERLAY -->
+<div class="order-overlay" id="order-overlay" onclick="closeOrderOutside(event)">
   <div class="order-sheet">
     <div class="order-handle"></div>
-
-    <!-- Form -->
     <div id="order-form-wrap">
-      <div class="order-title">ثبت سفارش</div>
-      <div class="order-subtitle">اطلاعات خود را وارد کنید</div>
+      <div class="order-title">تکمیل سفارش</div>
+      <div class="order-subtitle" id="order-summary-text"></div>
 
-      <div class="order-product-info">
-        <div class="order-product-icon" id="order-icon">🧣</div>
-        <div>
-          <div class="order-product-name" id="order-name">پیش‌بند آستین‌دار</div>
-        </div>
-      </div>
+      <!-- Cart Summary -->
+      <div id="order-cart-summary" style="margin-bottom:16px;background:var(--cloud);border-radius:12px;padding:12px;max-height:200px;overflow-y:auto;"></div>
 
       <div class="order-form">
         <label>نام و نام خانوادگی *</label>
         <input type="text" id="f-name" placeholder="مثال: علی احمدی" />
-
         <label>شماره موبایل *</label>
         <input type="tel" id="f-phone" placeholder="۰۹۱۲۳۴۵۶۷۸۹" />
-
         <label>شهر</label>
         <input type="text" id="f-city" placeholder="مثال: تهران" />
-
-        <label>تعداد پک *</label>
-        <div class="qty-stepper">
-          <button class="qty-btn" id="qty-minus" onclick="changeQty(-1)">−</button>
-          <div class="qty-display">
-            <div class="qty-number" id="qty-val">1</div>
-            <div class="qty-packs" id="qty-packs">۱ پک</div>
-          </div>
-          <button class="qty-btn" onclick="changeQty(1)">+</button>
-        </div>
-
         <label>توضیحات (اختیاری)</label>
         <input type="text" id="f-note" placeholder="هر توضیح اضافه‌ای..." />
       </div>
-
       <button class="order-submit" id="submit-btn" onclick="submitOrder()">ثبت سفارش 📨</button>
       <button class="order-cancel" onclick="closeOrderPanel()">انصراف</button>
     </div>
-
-    <!-- Success -->
     <div class="success-msg" id="success-msg">
       <div class="success-icon">✅</div>
       <div class="success-text">سفارش ثبت شد!</div>
       <div class="success-sub">به زودی با شما تماس می‌گیریم<br>سپاسگزاریم 🙏</div>
-      <button class="order-submit" onclick="closeOrderPanel()" style="margin-top:16px">بازگشت به کاتالوگ</button>
+      <button class="order-submit" onclick="closeOrderPanel();goHome();" style="margin-top:16px">بازگشت به کاتالوگ</button>
     </div>
   </div>
 </div>
 
+<!-- ADD TO CART OVERLAY -->
+<div class="order-overlay" id="add-overlay" onclick="closeAddOutside(event)">
+  <div class="order-sheet">
+    <div class="order-handle"></div>
+    <div class="order-title" id="add-title">افزودن به سبد</div>
+    <div class="order-product-info">
+      <div class="order-product-icon" id="add-icon">🧣</div>
+      <div>
+        <div class="order-product-name" id="add-name"></div>
+        <div style="font-size:11px;color:var(--blue);margin-top:2px" id="add-price"></div>
+      </div>
+    </div>
+    <label style="display:block;font-size:12px;font-weight:500;color:var(--text-mid);margin-bottom:8px;">تعداد پک *</label>
+    <div class="qty-stepper">
+      <button class="qty-btn" id="qty-minus" onclick="changeQty(-1)">−</button>
+      <div class="qty-display">
+        <div class="qty-number" id="qty-val">1</div>
+        <div class="qty-packs" id="qty-packs">۱ پک</div>
+      </div>
+      <button class="qty-btn" onclick="changeQty(1)">+</button>
+    </div>
+    <button class="order-submit" style="margin-top:20px" onclick="addToCart()">افزودن به سبد 🛒</button>
+    <button class="order-cancel" onclick="closeAdd()">انصراف</button>
+  </div>
+</div>
+
 <script>
-const BOT_TOKEN = '8905111858:AAHdNL71rl20aPxmqyuNOZ_5ihtOS_EeugY';
+const BOT_TOKEN = 'YOUR_BOT_TOKEN';
 const ADMIN_IDS = ['104243634', '54180809'];
 
 const data = {
-  pishband_astan: {
-    title: 'پیش‌بند آستین‌دار',
-    items: [
-      { code:'sk001', name:'پیش‌بند آستین‌دار', price:'۲۷۵,۰۰۰', minQty:6, min:'حداقل ۶ عدد', img:'images/sk001.jpeg' },
-      { code:'sk002', name:'پیش‌بند آستین‌دار', price:'۲۷۵,۰۰۰', minQty:6, min:'حداقل ۶ عدد', img:'images/sk002.jpeg' },
-      { code:'sk003', name:'پیش‌بند آستین‌دار', price:'۲۷۵,۰۰۰', minQty:6, min:'حداقل ۶ عدد', img:'images/sk003.jpeg' },
-      { code:'sk004', name:'پیش‌بند آستین‌دار', price:'۲۷۵,۰۰۰', minQty:6, min:'حداقل ۶ عدد', img:'images/sk004.jpeg' },
-      { code:'sk005', name:'پیش‌بند آستین‌دار', price:'۲۷۵,۰۰۰', minQty:6, min:'حداقل ۶ عدد', img:'images/sk005.jpeg' },
-      { code:'sk006', name:'پیش‌بند آستین‌دار', price:'۲۷۵,۰۰۰', minQty:6, min:'حداقل ۶ عدد', img:'images/sk006.jpeg' },
-    ]
-  },
-  pishband_zhile: {
-    title: 'پیش‌بند ژیله‌ای',
-    items: [
-      { code:'sk011', name:'پیش‌بند ژیله‌ای', price:'۲۹۵,۰۰۰', minQty:9, min:'حداقل ۹ عدد', img:'images/sk011.jpeg' },
-      { code:'sk012', name:'پیش‌بند ژیله‌ای', price:'۲۹۵,۰۰۰', minQty:9, min:'حداقل ۹ عدد', img:'images/sk012.jpg' },
-      { code:'sk013', name:'پیش‌بند ژیله‌ای', price:'۲۹۵,۰۰۰', minQty:9, min:'حداقل ۹ عدد', img:'images/sk013.jpg' },
-      { code:'sk014', name:'پیش‌بند ژیله‌ای', price:'۲۹۵,۰۰۰', minQty:9, min:'حداقل ۹ عدد', img:'images/sk014.jpg' },
-      { code:'sk015', name:'پیش‌بند ژیله‌ای', price:'۲۹۵,۰۰۰', minQty:9, min:'حداقل ۹ عدد', img:'images/sk015.jpg' },
-      { code:'sk016', name:'پیش‌بند ژیله‌ای', price:'۲۹۵,۰۰۰', minQty:9, min:'حداقل ۹ عدد', img:'images/sk016.jpg' },
-    ]
-  },
-  pishband_do: {
-    title: 'پیش‌بند دو عددی',
-    items: [
-      { code:'sk021', name:'پیش‌بند دو عددی', price:'۲۷۳,۰۰۰', minQty:10, min:'حداقل ۱۰ عدد', img:'images/sk021.jpg' },
-      { code:'sk022', name:'پیش‌بند دو عددی', price:'۲۷۳,۰۰۰', minQty:10, min:'حداقل ۱۰ عدد', img:'images/sk022.jpg' },
-      { code:'sk023', name:'پیش‌بند دو عددی', price:'۲۷۳,۰۰۰', minQty:10, min:'حداقل ۱۰ عدد', img:'images/sk023.jpg' },
-      { code:'sk024', name:'پیش‌بند دو عددی', price:'۲۷۳,۰۰۰', minQty:10, min:'حداقل ۱۰ عدد', img:'images/sk024.jpg' },
-      { code:'sk025', name:'پیش‌بند دو عددی', price:'۲۷۳,۰۰۰', minQty:10, min:'حداقل ۱۰ عدد', img:'images/sk025.jpg' },
-      { code:'sk026', name:'پیش‌بند دو عددی', price:'۲۷۳,۰۰۰', minQty:10, min:'حداقل ۱۰ عدد', img:'images/sk026.jpg' },
-      { code:'sk027', name:'پیش‌بند دو عددی', price:'۲۷۳,۰۰۰', minQty:10, min:'حداقل ۱۰ عدد', img:'images/sk027.jpg' },
-      { code:'sk028', name:'پیش‌بند دو عددی', price:'۲۷۳,۰۰۰', minQty:10, min:'حداقل ۱۰ عدد', img:'images/sk028.jpg' },
-      { code:'sk029', name:'پیش‌بند دو عددی', price:'۲۷۳,۰۰۰', minQty:10, min:'حداقل ۱۰ عدد', img:'images/sk029.jpg' },
-      { code:'sk030', name:'پیش‌بند دو عددی', price:'۲۷۳,۰۰۰', minQty:10, min:'حداقل ۱۰ عدد', img:'images/sk030.jpg' },
-    ]
-  },
-  pishband_se: {
-    title: 'پیش‌بند سه عددی',
-    items: [
-      { code:'sk031', name:'پیش‌بند سه عددی', price:'۲۱۳,۰۰۰', minQty:12, min:'حداقل ۱۲ عدد', img:'images/sk031.jpg' },
-      { code:'sk032', name:'پیش‌بند سه عددی', price:'۲۱۳,۰۰۰', minQty:12, min:'حداقل ۱۲ عدد', img:'images/sk032.jpg' },
-      { code:'sk033', name:'پیش‌بند سه عددی', price:'۲۱۳,۰۰۰', minQty:12, min:'حداقل ۱۲ عدد', img:'images/sk033.jpg' },
-      { code:'sk034', name:'پیش‌بند سه عددی', price:'۲۱۳,۰۰۰', minQty:12, min:'حداقل ۱۲ عدد', img:'images/sk034.jpg' },
-      { code:'sk035', name:'پیش‌بند سه عددی', price:'۲۱۳,۰۰۰', minQty:12, min:'حداقل ۱۲ عدد', img:'images/sk035.jpg' },
-      { code:'sk036', name:'پیش‌بند سه عددی', price:'۲۱۳,۰۰۰', minQty:12, min:'حداقل ۱۲ عدد', img:'images/sk036.jpg' },
-    ]
-  },
-  dastmal: {
-    title: 'دستمال گردن',
-    items: [
-      { code:'sk101', name:'دستمال گردن دو عددی', price:'۲۴۵,۰۰۰', minQty:10, min:'حداقل ۱۰ عدد', img:'images/sk101.jpeg' },
-      { code:'sk102', name:'دستمال گردن دو عددی', price:'۲۴۵,۰۰۰', minQty:10, min:'حداقل ۱۰ عدد', img:'images/sk102.jpeg' },
-      { code:'sk103', name:'دستمال گردن دو عددی', price:'۲۴۵,۰۰۰', minQty:10, min:'حداقل ۱۰ عدد', img:'images/sk103.jpeg' },
-      { code:'sk104', name:'دستمال گردن دو عددی', price:'۲۴۵,۰۰۰', minQty:10, min:'حداقل ۱۰ عدد', img:'images/sk104.jpeg' },
-      { code:'sk105', name:'دستمال گردن دو عددی', price:'۲۴۵,۰۰۰', minQty:10, min:'حداقل ۱۰ عدد', img:'images/sk105.jpeg' },
-      { code:'sk106', name:'دستمال گردن دو عددی', price:'۲۴۵,۰۰۰', minQty:10, min:'حداقل ۱۰ عدد', img:'images/sk106.jpeg' },
-      { code:'sk107', name:'دستمال گردن دو عددی', price:'۲۴۵,۰۰۰', minQty:10, min:'حداقل ۱۰ عدد', img:'images/sk107.jpeg' },
-      { code:'sk108', name:'دستمال گردن دو عددی', price:'۲۴۵,۰۰۰', minQty:10, min:'حداقل ۱۰ عدد', img:'images/sk108.jpeg' },
-      { code:'sk109', name:'دستمال گردن دو عددی', price:'۲۴۵,۰۰۰', minQty:10, min:'حداقل ۱۰ عدد', img:'images/sk109.jpeg' },
-      { code:'sk110', name:'دستمال گردن دو عددی', price:'۲۴۵,۰۰۰', minQty:10, min:'حداقل ۱۰ عدد', img:'images/sk110.jpeg' },
-    ]
-  },
-  pato: {
-    title: 'پتو کلاهدار',
-    items: [
-      { code:'sk201', name:'پتو کلاهدار چهارفصل ۷۵×۷۵', price:'۵۲۵,۰۰۰', minQty:6, min:'حداقل ۶ عدد', img:'images/sk201.jpg' },
-      { code:'sk202', name:'پتو کلاهدار چهارفصل ۷۵×۷۵', price:'۵۲۵,۰۰۰', minQty:6, min:'حداقل ۶ عدد', img:'images/sk202.jpg' },
-      { code:'sk203', name:'پتو کلاهدار چهارفصل ۷۵×۷۵', price:'۵۲۵,۰۰۰', minQty:6, min:'حداقل ۶ عدد', img:'images/sk203.jpg' },
-      { code:'sk204', name:'پتو کلاهدار چهارفصل ۷۵×۷۵', price:'۵۲۵,۰۰۰', minQty:6, min:'حداقل ۶ عدد', img:'images/sk204.jpg' },
-      { code:'sk205', name:'پتو کلاهدار چهارفصل ۷۵×۷۵', price:'۵۲۵,۰۰۰', minQty:6, min:'حداقل ۶ عدد', img:'images/sk205.jpg' },
-      { code:'sk206', name:'پتو کلاهدار چهارفصل ۷۵×۷۵', price:'۵۲۵,۰۰۰', minQty:6, min:'حداقل ۶ عدد', img:'images/sk206.jpg' },
-    ]
-  },
-  ziranaz: {
-    title: 'زیرانداز',
-    items: [
-      { code:'sk301', name:'زیرانداز پشت مشمعی ۷۵×۶۰', price:'۳۸۱,۰۰۰', minQty:12, min:'حداقل ۱۲ عدد', img:'images/sk301.jpg' },
-      { code:'sk302', name:'زیرانداز پشت مشمعی ۷۵×۶۰', price:'۳۸۱,۰۰۰', minQty:12, min:'حداقل ۱۲ عدد', img:'images/sk302.jpg' },
-      { code:'sk303', name:'زیرانداز پشت مشمعی ۷۵×۶۰', price:'۳۸۱,۰۰۰', minQty:12, min:'حداقل ۱۲ عدد', img:'images/sk303.jpg' },
-      { code:'sk304', name:'زیرانداز پشت مشمعی ۷۵×۶۰', price:'۳۸۱,۰۰۰', minQty:12, min:'حداقل ۱۲ عدد', img:'images/sk304.jpg' },
-      { code:'sk305', name:'زیرانداز پشت مشمعی ۷۵×۶۰', price:'۳۸۱,۰۰۰', minQty:12, min:'حداقل ۱۲ عدد', img:'images/sk305.jpg' },
-      { code:'sk306', name:'زیرانداز پشت مشمعی ۷۵×۶۰', price:'۳۸۱,۰۰۰', minQty:12, min:'حداقل ۱۲ عدد', img:'images/sk306.jpg' },
-      { code:'sk307', name:'زیرانداز پشت مشمعی ۷۵×۶۰', price:'۳۸۱,۰۰۰', minQty:12, min:'حداقل ۱۲ عدد', img:'images/sk307.jpg' },
-      { code:'sk308', name:'زیرانداز پشت مشمعی ۷۵×۶۰', price:'۳۸۱,۰۰۰', minQty:12, min:'حداقل ۱۲ عدد', img:'images/sk308.jpg' },
-      { code:'sk309', name:'زیرانداز پشت مشمعی ۷۵×۶۰', price:'۳۸۱,۰۰۰', minQty:12, min:'حداقل ۱۲ عدد', img:'images/sk309.jpg' },
-      { code:'sk310', name:'زیرانداز پشت مشمعی ۷۵×۶۰', price:'۳۸۱,۰۰۰', minQty:12, min:'حداقل ۱۲ عدد', img:'images/sk310.jpg' },
-      { code:'sk311', name:'زیرانداز پشت مشمعی ۷۵×۶۰', price:'۳۸۱,۰۰۰', minQty:12, min:'حداقل ۱۲ عدد', img:'images/sk311.jpg' },
-      { code:'sk312', name:'زیرانداز پشت مشمعی ۷۵×۶۰', price:'۳۸۱,۰۰۰', minQty:12, min:'حداقل ۱۲ عدد', img:'images/sk312.jpg' },
-    ]
-  },
-  balesh: {
-    title: 'بالش شیردهی',
-    items: [
-      { code:'sk401', name:'بالش شیردهی', price:'۱۸۳,۰۰۰', minQty:6, min:'حداقل ۶ عدد', img:'images/sk401.jpeg' },
-      { code:'sk402', name:'بالش شیردهی', price:'۱۸۳,۰۰۰', minQty:6, min:'حداقل ۶ عدد', img:'images/sk402.jpeg' },
-      { code:'sk403', name:'بالش شیردهی', price:'۱۸۳,۰۰۰', minQty:6, min:'حداقل ۶ عدد', img:'images/sk403.jpeg' },
-      { code:'sk404', name:'بالش شیردهی', price:'۱۸۳,۰۰۰', minQty:6, min:'حداقل ۶ عدد', img:'images/sk404.jpeg' },
-      { code:'sk405', name:'بالش شیردهی', price:'۱۸۳,۰۰۰', minQty:6, min:'حداقل ۶ عدد', img:'images/sk405.jpeg' },
-      { code:'sk406', name:'بالش شیردهی', price:'۱۸۳,۰۰۰', minQty:6, min:'حداقل ۶ عدد', img:'images/sk406.jpeg' },
-    ]
-  },
-  arogh: {
-    title: 'آروغ‌گیر',
-    items: [
-      { code:'sk501', name:'آروغ‌گیر سه عددی', price:'۳۲۵,۰۰۰', minQty:12, min:'حداقل ۱۲ عدد', img:'images/sk501.jpeg' },
-      { code:'sk502', name:'آروغ‌گیر سه عددی', price:'۳۲۵,۰۰۰', minQty:12, min:'حداقل ۱۲ عدد', img:'images/sk502.jpeg' },
-    ]
-  }
+  pishband_astan: { title:'پیش‌بند آستین‌دار', price:275000, minQty:6, items:[
+    {code:'sk001',img:'images/sk001.jpeg'},{code:'sk002',img:'images/sk002.jpeg'},
+    {code:'sk003',img:'images/sk003.jpeg'},{code:'sk004',img:'images/sk004.jpeg'},
+    {code:'sk005',img:'images/sk005.jpeg'},{code:'sk006',img:'images/sk006.jpeg'},
+  ]},
+  pishband_zhile: { title:'پیش‌بند ژیله‌ای', price:295000, minQty:9, items:[
+    {code:'sk011',img:'images/sk011.jpeg'},{code:'sk012',img:'images/sk012.jpg'},
+    {code:'sk013',img:'images/sk013.jpg'},{code:'sk014',img:'images/sk014.jpg'},
+    {code:'sk015',img:'images/sk015.jpg'},{code:'sk016',img:'images/sk016.jpg'},
+  ]},
+  pishband_do: { title:'پیش‌بند دو عددی', price:273000, minQty:10, items:[
+    {code:'sk021',img:'images/sk021.jpg'},{code:'sk022',img:'images/sk022.jpg'},
+    {code:'sk023',img:'images/sk023.jpg'},{code:'sk024',img:'images/sk024.jpg'},
+    {code:'sk025',img:'images/sk025.jpg'},{code:'sk026',img:'images/sk026.jpg'},
+    {code:'sk027',img:'images/sk027.jpg'},{code:'sk028',img:'images/sk028.jpg'},
+    {code:'sk029',img:'images/sk029.jpg'},{code:'sk030',img:'images/sk030.jpg'},
+  ]},
+  pishband_se: { title:'پیش‌بند سه عددی', price:213000, minQty:12, items:[
+    {code:'sk031',img:'images/sk031.jpg'},{code:'sk032',img:'images/sk032.jpg'},
+    {code:'sk033',img:'images/sk033.jpg'},{code:'sk034',img:'images/sk034.jpg'},
+    {code:'sk035',img:'images/sk035.jpg'},{code:'sk036',img:'images/sk036.jpg'},
+  ]},
+  dastmal: { title:'دستمال گردن دو عددی', price:245000, minQty:10, items:[
+    {code:'sk101',img:'images/sk101.jpeg'},{code:'sk102',img:'images/sk102.jpeg'},
+    {code:'sk103',img:'images/sk103.jpeg'},{code:'sk104',img:'images/sk104.jpeg'},
+    {code:'sk105',img:'images/sk105.jpeg'},{code:'sk106',img:'images/sk106.jpeg'},
+    {code:'sk107',img:'images/sk107.jpeg'},{code:'sk108',img:'images/sk108.jpeg'},
+    {code:'sk109',img:'images/sk109.jpeg'},{code:'sk110',img:'images/sk110.jpeg'},
+  ]},
+  pato: { title:'پتو کلاهدار چهارفصل', price:525000, minQty:6, items:[
+    {code:'sk201',img:'images/sk201.jpg'},{code:'sk202',img:'images/sk202.jpg'},
+    {code:'sk203',img:'images/sk203.jpg'},{code:'sk204',img:'images/sk204.jpg'},
+    {code:'sk205',img:'images/sk205.jpg'},{code:'sk206',img:'images/sk206.jpg'},
+  ]},
+  ziranaz: { title:'زیرانداز پشت مشمعی', price:381000, minQty:12, items:[
+    {code:'sk301',img:'images/sk301.jpg'},{code:'sk302',img:'images/sk302.jpg'},
+    {code:'sk303',img:'images/sk303.jpg'},{code:'sk304',img:'images/sk304.jpg'},
+    {code:'sk305',img:'images/sk305.jpg'},{code:'sk306',img:'images/sk306.jpg'},
+    {code:'sk307',img:'images/sk307.jpg'},{code:'sk308',img:'images/sk308.jpg'},
+    {code:'sk309',img:'images/sk309.jpg'},{code:'sk310',img:'images/sk310.jpg'},
+    {code:'sk311',img:'images/sk311.jpg'},{code:'sk312',img:'images/sk312.jpg'},
+  ]},
+  balesh: { title:'بالش شیردهی', price:183000, minQty:6, items:[
+    {code:'sk401',img:'images/sk401.jpeg'},{code:'sk402',img:'images/sk402.jpeg'},
+    {code:'sk403',img:'images/sk403.jpeg'},{code:'sk404',img:'images/sk404.jpeg'},
+    {code:'sk405',img:'images/sk405.jpeg'},{code:'sk406',img:'images/sk406.jpeg'},
+  ]},
+  arogh: { title:'آروغ‌گیر سه عددی', price:325000, minQty:12, items:[
+    {code:'sk501',img:'images/sk501.jpeg'},{code:'sk502',img:'images/sk502.jpeg'},
+  ]},
 };
 
-let currentProduct = null;
+// Cart
+let cart = [];
+let currentCat = null;
+let currentQty = 0;
+
+function fmt(n) { return n.toLocaleString('fa-IR'); }
 
 function openCat(key) {
+  currentCat = key;
   const cat = data[key];
   document.getElementById('cat-title').textContent = cat.title;
-  document.getElementById('cat-sub').textContent = cat.items.length + ' محصول';
-  const catKey = key;
+  document.getElementById('cat-sub').textContent = cat.items.length + ' طرح · حداقل ' + cat.minQty + ' عدد';
+
   document.getElementById('prod-grid').innerHTML = cat.items.map((p,i) => `
     <div class="prod-card" style="animation-delay:${i*0.07}s">
       <div class="prod-img">
-        <img src="${p.img}" alt="${p.name}" onerror="this.parentElement.innerHTML='🧸'">
+        <img src="${p.img}" alt="${p.code}" onerror="this.parentElement.innerHTML='🧸'">
       </div>
       <div class="prod-body">
         <div class="prod-code">${p.code}</div>
-        <div class="prod-price">${p.price} <span>تومان</span></div>
-        <div class="prod-min">${p.min}</div>
+        <div class="prod-price">${fmt(cat.price)} <span>تومان</span></div>
+        <div class="prod-min">📦 حداقل ${cat.minQty} عدد</div>
       </div>
     </div>
   `).join('') + `
-    <div style="grid-column: 1/-1; padding: 8px 0 16px;">
-      <button onclick="openCatOrder('${catKey}')" style="
-        width: 100%;
-        background: linear-gradient(135deg, var(--blue), var(--teal));
-        color: white;
-        border: none;
-        border-radius: 16px;
-        padding: 16px;
-        font-family: 'Vazirmatn', sans-serif;
-        font-size: 16px;
-        font-weight: 700;
-        cursor: pointer;
-        box-shadow: 0 4px 16px rgba(46,134,193,0.3);
-      ">ثبت سفارش 📦</button>
+    <div class="order-btn-wrap">
+      <button class="order-btn-main" onclick="openAdd('${key}')">
+        🛒 افزودن به سبد سفارش
+      </button>
     </div>
   `;
+
   document.getElementById('home').classList.remove('active');
+  document.getElementById('cart').classList.remove('active');
   document.getElementById('products').classList.add('active');
   window.scrollTo(0,0);
 }
 
 function goHome() {
   document.getElementById('products').classList.remove('active');
+  document.getElementById('cart').classList.remove('active');
   document.getElementById('home').classList.add('active');
   window.scrollTo(0,0);
 }
 
-function openCatOrder(key) {
+// Add to cart overlay
+function openAdd(key) {
   const cat = data[key];
-  currentProduct = {
-    name: cat.title,
-    code: key,
-    minQty: cat.items[0].minQty,
-    img: cat.items[0].img,
-    qty: cat.items[0].minQty
-  };
-  document.getElementById('order-icon').innerHTML = `<img src="${cat.items[0].img}" style="width:100%;height:100%;object-fit:cover;border-radius:50%" onerror="this.parentElement.innerHTML='🧸'">`;
-  document.getElementById('order-name').textContent = cat.title;
+  currentCat = key;
+  currentQty = cat.minQty;
+  document.getElementById('add-title').textContent = 'افزودن به سبد — ' + cat.title;
+  document.getElementById('add-name').textContent = cat.title;
+  document.getElementById('add-price').textContent = fmt(cat.price) + ' تومان / عدد';
+  document.getElementById('add-icon').innerHTML = `<img src="${cat.items[0].img}" style="width:100%;height:100%;object-fit:cover" onerror="this.parentElement.innerHTML='🧸'">`;
   updateStepper();
+  document.getElementById('add-overlay').classList.add('show');
+}
+
+function closeAdd() { document.getElementById('add-overlay').classList.remove('show'); }
+function closeAddOutside(e) { if(e.target===document.getElementById('add-overlay')) closeAdd(); }
+
+function updateStepper() {
+  const cat = data[currentCat];
+  const packs = currentQty / cat.minQty;
+  document.getElementById('qty-val').textContent = currentQty;
+  document.getElementById('qty-packs').textContent = packs + ' پک';
+  document.getElementById('qty-minus').disabled = currentQty <= cat.minQty;
+}
+
+function changeQty(dir) {
+  const cat = data[currentCat];
+  currentQty += dir * cat.minQty;
+  if (currentQty < cat.minQty) currentQty = cat.minQty;
+  updateStepper();
+}
+
+function addToCart() {
+  const cat = data[currentCat];
+  const existing = cart.find(i => i.key === currentCat);
+  if (existing) {
+    existing.qty = currentQty;
+  } else {
+    cart.push({ key: currentCat, title: cat.title, qty: currentQty, price: cat.price, minQty: cat.minQty, img: cat.items[0].img });
+  }
+  updateCartBadge();
+  closeAdd();
+  // Show confirmation
+  alert(`✅ ${cat.title} — ${currentQty} عدد به سبد اضافه شد`);
+}
+
+function updateCartBadge() {
+  const total = cart.reduce((s,i) => s + i.qty, 0);
+  const badge = document.getElementById('cart-badge');
+  if (total > 0) { badge.textContent = cart.length; badge.classList.add('show'); }
+  else { badge.classList.remove('show'); }
+}
+
+function removeFromCart(key) {
+  cart = cart.filter(i => i.key !== key);
+  updateCartBadge();
+  renderCart();
+}
+
+function showCart() {
+  renderCart();
+  document.getElementById('home').classList.remove('active');
+  document.getElementById('products').classList.remove('active');
+  document.getElementById('cart').classList.add('active');
+  window.scrollTo(0,0);
+}
+
+function renderCart() {
+  const body = document.getElementById('cart-body');
+  if (cart.length === 0) {
+    body.innerHTML = `<div class="cart-empty"><div class="cart-empty-icon">🛒</div><div class="cart-empty-text">سبد سفارش خالی است<br>محصولات را انتخاب کنید</div></div>`;
+    document.getElementById('cart-sub').textContent = 'خالی';
+    return;
+  }
+
+  const totalAmount = cart.reduce((s,i) => s + i.qty * i.price, 0);
+  const totalItems = cart.reduce((s,i) => s + i.qty, 0);
+  document.getElementById('cart-sub').textContent = cart.length + ' نوع محصول · ' + totalItems + ' عدد';
+
+  body.innerHTML = cart.map(item => `
+    <div class="cart-item">
+      <div class="cart-item-img">
+        <img src="${item.img}" alt="${item.title}" onerror="this.parentElement.innerHTML='🧸'" style="width:100%;height:100%;object-fit:cover">
+      </div>
+      <div class="cart-item-info">
+        <div class="cart-item-name">${item.title}</div>
+        <div class="cart-item-qty">${item.qty} عدد (${item.qty/item.minQty} پک) · ${fmt(item.price)} تومان</div>
+        <div class="cart-item-price">${fmt(item.qty * item.price)} تومان</div>
+      </div>
+      <button class="cart-item-remove" onclick="removeFromCart('${item.key}')">🗑️</button>
+    </div>
+  `).join('') + `
+    <div class="cart-total">
+      ${cart.map(i => `<div class="cart-total-row"><span>${i.title}</span><span>${fmt(i.qty * i.price)} ت</span></div>`).join('')}
+      <div class="cart-total-row"><span>جمع کل</span><span>${fmt(totalAmount)} تومان</span></div>
+    </div>
+    <button class="cart-checkout-btn" onclick="openCheckout()">ثبت سفارش نهایی 📨</button>
+    <div style="height:20px"></div>
+  `;
+}
+
+function openCheckout() {
+  if (cart.length === 0) return;
+  const totalAmount = cart.reduce((s,i) => s + i.qty * i.price, 0);
+  document.getElementById('order-summary-text').textContent = cart.length + ' نوع محصول · جمع: ' + fmt(totalAmount) + ' تومان';
+  const summary = document.getElementById('order-cart-summary');
+  summary.innerHTML = cart.map(i => `
+    <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #e0e0e0;font-size:12px">
+      <span>${i.title} × ${i.qty} عدد</span>
+      <span style="color:var(--teal);font-weight:600">${fmt(i.qty * i.price)} ت</span>
+    </div>
+  `).join('') + `<div style="display:flex;justify-content:space-between;padding:8px 0;font-size:14px;font-weight:700;color:var(--blue)"><span>جمع کل</span><span>${fmt(totalAmount)} تومان</span></div>`;
 
   document.getElementById('f-name').value = '';
   document.getElementById('f-phone').value = '';
@@ -948,75 +499,52 @@ function openCatOrder(key) {
   document.getElementById('order-overlay').classList.add('show');
 }
 
-function updateStepper() {
-  const qty = currentProduct.qty;
-  const minQty = currentProduct.minQty;
-  const packs = qty / minQty;
-  document.getElementById('qty-val').textContent = qty;
-  document.getElementById('qty-packs').textContent = packs + ' پک';
-  document.getElementById('qty-minus').disabled = qty <= minQty;
-}
-
-function changeQty(dir) {
-  currentProduct.qty += dir * currentProduct.minQty;
-  if (currentProduct.qty < currentProduct.minQty) currentProduct.qty = currentProduct.minQty;
-  updateStepper();
-}
-function closeOrder(e) {
-  if (e.target === document.getElementById('order-overlay')) closeOrderPanel();
-}
-
-function closeOrderPanel() {
-  document.getElementById('order-overlay').classList.remove('show');
-}
+function closeOrderOutside(e) { if(e.target===document.getElementById('order-overlay')) closeOrderPanel(); }
+function closeOrderPanel() { document.getElementById('order-overlay').classList.remove('show'); }
 
 async function submitOrder() {
   const name  = document.getElementById('f-name').value.trim();
   const phone = document.getElementById('f-phone').value.trim();
-  const qty   = currentProduct.qty;
   const city  = document.getElementById('f-city').value.trim();
   const note  = document.getElementById('f-note').value.trim();
-  const packs = qty / currentProduct.minQty;
 
-  if (!name || !phone) {
-    alert('لطفاً نام و شماره موبایل را وارد کنید');
-    return;
-  }
+  if (!name || !phone) { alert('لطفاً نام و شماره موبایل را وارد کنید'); return; }
 
   const btn = document.getElementById('submit-btn');
-  btn.disabled = true;
-  btn.textContent = 'در حال ارسال...';
+  btn.disabled = true; btn.textContent = 'در حال ارسال...';
 
-  const msg = `
-🛒 سفارش جدید سلام کوچولو
+  const totalAmount = cart.reduce((s,i) => s + i.qty * i.price, 0);
+  const itemLines = cart.map(i => `  • ${i.title}: ${i.qty} عدد (${i.qty/i.minQty} پک) = ${fmt(i.qty*i.price)} تومان`).join('\n');
 
-📦 دسته: ${currentProduct.name}
-📊 تعداد: ${qty} عدد (${packs} پک)
-📝 توضیحات: ${note || 'ندارد'}
+  const msg = `🛒 سفارش جدید سلام کوچولو
+
+📦 محصولات:
+${itemLines}
+
+💰 جمع کل: ${fmt(totalAmount)} تومان
 
 👤 نام: ${name}
 📱 موبایل: ${phone}
 🏙️ شهر: ${city || 'ذکر نشده'}
+📝 توضیحات: ${note || 'ندارد'}
 
-⏰ زمان: ${new Date().toLocaleString('fa-IR')}
-  `.trim();
+⏰ زمان: ${new Date().toLocaleString('fa-IR')}`;
 
   try {
     await Promise.all(ADMIN_IDS.map(id =>
       fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ chat_id: id, text: msg })
+        method:'POST', headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({chat_id:id, text:msg})
       })
     ));
+    cart = [];
+    updateCartBadge();
     document.getElementById('order-form-wrap').style.display = 'none';
     document.getElementById('success-msg').classList.add('show');
   } catch(e) {
     alert('خطا در ارسال. لطفاً با شماره تماس بگیرید.');
   }
-
-  btn.disabled = false;
-  btn.textContent = 'ثبت سفارش 📨';
+  btn.disabled = false; btn.textContent = 'ثبت سفارش 📨';
 }
 </script>
 </body>
