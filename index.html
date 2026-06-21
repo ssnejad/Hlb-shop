@@ -8,6 +8,7 @@
   <title>سلام کوچولو</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <style>
     :root {
       --blue:       #2E86C1;
@@ -212,7 +213,7 @@
 <!-- CONTACT BAR -->
 <div class="contact-bar">
   <a href="https://wa.me/989125674059" class="c-btn" target="_blank"><div class="c-icon c-wa">💬</div><span class="c-label">واتساپ</span></a>
-  <a href="https://instagram.com/salamkoochoolo" class="c-btn" target="_blank"><div class="c-icon c-ig">📸</div><span class="c-label">اینستاگرام</span></a>
+  <a href="https://instagram.com/hello.little.baby" class="c-btn" target="_blank"><div class="c-icon c-ig">📸</div><span class="c-label">اینستاگرام</span></a>
   <a href="tel:09125674059" class="c-btn"><div class="c-icon c-tel">📞</div><span class="c-label">۰۹۱۲۵۶۷۴۰۵۹</span></a>
   <a href="tel:09128609131" class="c-btn"><div class="c-icon c-loc">📱</div><span class="c-label">۰۹۱۲۸۶۰۹۱۳۱</span></a>
 </div>
@@ -279,6 +280,10 @@
 <script>
 const BOT_TOKEN = 'YOUR_BOT_TOKEN';
 const ADMIN_IDS = ['104243634', '54180809'];
+const EMAILJS_SERVICE = 'service_lvp1ruc';
+const EMAILJS_TEMPLATE = 'template_x15z1pd';
+const EMAILJS_KEY = 'h653OqIAwliWB3hqX';
+emailjs.init(EMAILJS_KEY);
 
 const data = {
   pishband_astan: { title:'پیش‌بند آستین‌دار', price:275000, minQty:6, items:[
@@ -537,6 +542,10 @@ ${itemLines}
         body: JSON.stringify({chat_id:id, text:msg})
       })
     ));
+
+    // Send Email
+    await emailjs.send(EMAILJS_SERVICE, EMAILJS_TEMPLATE, { message: msg });
+
     cart = [];
     updateCartBadge();
     document.getElementById('order-form-wrap').style.display = 'none';
