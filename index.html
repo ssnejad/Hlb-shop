@@ -358,7 +358,7 @@
 </div>
 
 <script>
-const BOT_TOKEN = 'YOUR_BOT_TOKEN';
+const BOT_TOKEN = '8905111858:AAHdNL71rl20aPxmqyuNOZ_5ihtOS_EeugY';
 const ADMIN_IDS = ['104243634', '54180809'];
 const EMAILJS_SERVICE = 'service_lvp1ruc';
 const EMAILJS_TEMPLATE = 'template_x15z1pd';
@@ -619,7 +619,7 @@ ${itemLines}
 
   try {
     await Promise.all(ADMIN_IDS.map(id =>
-      fetch(`https://api.telegram.org/bot${8905111858:AAHdNL71rl20aPxmqyuNOZ_5ihtOS_EeugY}/sendMessage`, {
+      fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
         method:'POST', headers:{'Content-Type':'application/json'},
         body: JSON.stringify({chat_id:id, text:msg})
       })
