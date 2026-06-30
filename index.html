@@ -76,14 +76,17 @@
     .big-card-tag { font-size:10px; font-weight:700; margin-bottom:4px; }
     .big-card-title { font-size:16px; font-weight:800; line-height:1.3; }
     .big-card-count { margin-top:6px; font-size:11px; font-weight:600; }
-    .big-card-icon { position:absolute; bottom:-8px; left:12px; font-size:42px; filter:drop-shadow(0 4px 10px rgba(0,0,0,0.15)); }
+    .big-card-icon { position:absolute; bottom:-12px; left:10px; width:64px; height:64px; border-radius:18px; overflow:hidden; box-shadow:0 8px 20px rgba(0,0,0,0.25); border:3px solid #fff; }
+    .big-card-icon img { width:100%; height:100%; object-fit:cover; }
+    .big-card { padding-bottom:34px; }
 
     /* Small Cards */
     .small-cards { padding:18px 16px 0; display:grid; grid-template-columns:repeat(3,1fr); gap:10px; animation:fadeUp 0.5s ease 0.2s both; }
-    .small-card { border-radius:20px; padding:16px 8px; text-align:center; cursor:pointer; transition:transform 0.2s; }
+    .small-card { border-radius:20px; padding:18px 8px 14px; text-align:center; cursor:pointer; transition:transform 0.2s; position:relative; overflow:visible; margin-top:22px; }
     .small-card:hover { transform:translateY(-3px); }
-    .small-card-icon { font-size:24px; margin-bottom:6px; }
-    .small-card-title { font-size:9.5px; font-weight:700; line-height:1.4; }
+    .small-card-icon { width:48px; height:48px; border-radius:14px; overflow:hidden; box-shadow:0 6px 14px rgba(0,0,0,0.18); border:2.5px solid #fff; position:absolute; top:-22px; left:50%; transform:translateX(-50%); }
+    .small-card-icon img { width:100%; height:100%; object-fit:cover; }
+    .small-card-title { font-size:9.5px; font-weight:700; line-height:1.4; margin-top:14px; display:block; }
     .small-card-count { font-size:8.5px; font-weight:600; margin-top:3px; opacity:0.7; }
 
     /* PRODUCTS PAGE */
@@ -172,9 +175,14 @@
 <!-- HOME -->
 <div id="home" class="page active">
   <div class="home-header">
-    <div>
-      <div class="home-greeting">سلام کوچولو 👋</div>
-      <div class="home-subtitle">کاتالوگ عمده‌فروشی</div>
+    <div style="display:flex;align-items:center;gap:10px">
+      <div style="width:42px;height:42px;border-radius:50%;overflow:hidden;background:var(--blue-light);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+        <img src="logo.png" style="width:100%;height:100%;object-fit:contain" onerror="this.parentElement.innerHTML='👶'">
+      </div>
+      <div>
+        <div class="home-greeting">سلام کوچولو</div>
+        <div class="home-subtitle">کاتالوگ عمده‌فروشی</div>
+      </div>
     </div>
     <div class="cart-icon-btn" onclick="showCart()">
       🛒
@@ -204,29 +212,29 @@
       <div class="big-card-tag" style="color:rgba(255,255,255,0.8)">پرفروش</div>
       <div class="big-card-title" style="color:#fff">پیش‌بند<br>آستین‌دار</div>
       <div class="big-card-count" style="color:rgba(255,255,255,0.8)">۶ طرح</div>
-      <div class="big-card-icon">🧣</div>
+      <div class="big-card-icon"><img src="images/sk001.jpeg" onerror="this.parentElement.innerHTML='🧣'"></div>
     </div>
     <div class="big-card" style="background:var(--gold)" onclick="openCat('dastmal')">
       <div class="big-card-tag" style="color:rgba(0,0,0,0.45)">پرطرفدار</div>
       <div class="big-card-title" style="color:var(--dark)">دستمال<br>گردن</div>
       <div class="big-card-count" style="color:rgba(0,0,0,0.45)">۱۰ طرح</div>
-      <div class="big-card-icon">🤍</div>
+      <div class="big-card-icon"><img src="images/sk101.jpeg" onerror="this.parentElement.innerHTML='🤍'"></div>
     </div>
   </div>
 
   <div class="small-cards">
     <div class="small-card" style="background:var(--green-light)" onclick="openCat('pishband_zhile')">
-      <div class="small-card-icon">🧣</div>
+      <div class="small-card-icon"><img src="images/sk011.jpeg" onerror="this.parentElement.innerHTML='🧣'"></div>
       <div class="small-card-title" style="color:#1A6B3C">پیش‌بند ژیله‌ای</div>
       <div class="small-card-count" style="color:#27AE60">۶ طرح</div>
     </div>
     <div class="small-card" style="background:var(--blue-light)" onclick="openCat('pishband_do')">
-      <div class="small-card-icon">🧣</div>
+      <div class="small-card-icon"><img src="images/sk021.jpg" onerror="this.parentElement.innerHTML='🧣'"></div>
       <div class="small-card-title" style="color:#1A5276">پیش‌بند دوعددی</div>
       <div class="small-card-count" style="color:#2980B9">۱۰ طرح</div>
     </div>
     <div class="small-card" style="background:var(--purple-light)" onclick="openCat('pishband_se')">
-      <div class="small-card-icon">🧣</div>
+      <div class="small-card-icon"><img src="images/sk031.jpg" onerror="this.parentElement.innerHTML='🧣'"></div>
       <div class="small-card-title" style="color:#6C3483">پیش‌بند سه‌عددی</div>
       <div class="small-card-count" style="color:#9B59B6">۶ طرح</div>
     </div>
@@ -234,27 +242,27 @@
 
   <div class="small-cards">
     <div class="small-card" style="background:var(--green-light)" onclick="openCat('pato')">
-      <div class="small-card-icon">🛏️</div>
+      <div class="small-card-icon"><img src="images/sk201.jpg" onerror="this.parentElement.innerHTML='🛏️'"></div>
       <div class="small-card-title" style="color:#1A6B3C">پتو کلاهدار</div>
       <div class="small-card-count" style="color:#27AE60">۶ طرح</div>
     </div>
     <div class="small-card" style="background:var(--blue-light)" onclick="openCat('ziranaz')">
-      <div class="small-card-icon">🟦</div>
+      <div class="small-card-icon"><img src="images/sk301.jpg" onerror="this.parentElement.innerHTML='🟦'"></div>
       <div class="small-card-title" style="color:#1A5276">زیرانداز</div>
       <div class="small-card-count" style="color:#2980B9">۱۲ طرح</div>
     </div>
     <div class="small-card" style="background:var(--purple-light)" onclick="openCat('balesh')">
-      <div class="small-card-icon">🌙</div>
+      <div class="small-card-icon"><img src="images/sk401.jpeg" onerror="this.parentElement.innerHTML='🌙'"></div>
       <div class="small-card-title" style="color:#6C3483">بالش شیردهی</div>
       <div class="small-card-count" style="color:#9B59B6">۶ طرح</div>
     </div>
   </div>
 
   <div class="small-cards" style="grid-template-columns:1fr">
-    <div class="small-card" style="background:var(--pink-light);display:flex;align-items:center;justify-content:center;gap:10px;flex-direction:row" onclick="openCat('arogh')">
-      <div class="small-card-icon" style="margin:0">⭐</div>
+    <div class="small-card" style="background:var(--pink-light);display:flex;align-items:center;justify-content:center;gap:14px;flex-direction:row;padding-top:14px" onclick="openCat('arogh')">
+      <div class="small-card-icon" style="position:static;transform:none;margin:0"><img src="images/sk501.jpeg" onerror="this.parentElement.innerHTML='⭐'"></div>
       <div style="text-align:right">
-        <div class="small-card-title" style="color:#C0392B">آروغ‌گیر سه عددی</div>
+        <div class="small-card-title" style="color:#C0392B;margin-top:0">آروغ‌گیر سه عددی</div>
         <div class="small-card-count" style="color:#E74C3C">۲ طرح</div>
       </div>
     </div>
@@ -290,7 +298,7 @@
   <a href="#" class="c-btn active-c" onclick="goHome();return false">
     <svg viewBox="0 0 24 24" fill="#1A1A2E"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
   </a>
-  <a href="https://instagram.com/hello.little.baby" class="c-btn" target="_blank">
+  <a href="https://instagram.com/salamkoochoolo" class="c-btn" target="_blank">
     <svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg>
   </a>
   <a href="https://wa.me/989125674059" class="c-btn" target="_blank">
@@ -358,7 +366,7 @@
 </div>
 
 <script>
-const BOT_TOKEN = '8905111858:AAHdNL71rl20aPxmqyuNOZ_5ihtOS_EeugY';
+const BOT_TOKEN = 'YOUR_BOT_TOKEN';
 const ADMIN_IDS = ['104243634', '54180809'];
 const EMAILJS_SERVICE = 'service_lvp1ruc';
 const EMAILJS_TEMPLATE = 'template_x15z1pd';
